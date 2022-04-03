@@ -1,3 +1,7 @@
+/**
+ * @file Implements edit-profile component that displays user's information, and
+ * enable them to manage their account.
+ */
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import * as authService from "../../services/auth-service";
@@ -33,6 +37,10 @@ const EditProfile = () => {
         }
     }
 
+    const handleDeleteAccount = () => {
+        alert("Successfully deleted your account!")
+    }
+
     return (<div className="ttr-edit-profile">
             <div className="border border-bottom-0">
                 <Link to="/profile"
@@ -44,6 +52,11 @@ const EditProfile = () => {
                       className="btn btn-dark rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
                     Save
                 </span>
+                <Link className="btn btn-danger rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2"
+                      onClick={() => handleDeleteAccount()}
+                      to='/'>
+                    Delete
+                </Link>
                 <h4 className="p-2 mb-0 pb-0 fw-bolder">Edit profile</h4>
                 <div className="mb-5 position-relative">
                     <img className="w-100" src="../images/nasa-profile-header.jpg"/>
