@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 import alice from "./alice-data.json"
+import admin from "./admin-user-data.json"
 import * as userService from "../../services/users-service";
-import {updateUserProfile} from "../../services/users-service";
 
 const EditProfile = () => {
     const [profileInfo, setProfileInfo] = useState({});
@@ -12,7 +12,7 @@ const EditProfile = () => {
         authService.profile()
             .then(profile => {
                 console.log(profile)
-                setProfileInfo(alice);
+                setProfileInfo(admin);
             })
     }, [])
 
