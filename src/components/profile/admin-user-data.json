@@ -1,0 +1,17 @@
+{
+  "_id" : "123",
+  "username": "alice",
+  "password": "****",
+  "firstName": "Alice",
+  "lastName": "Wonderland",
+  "email": "alice@123.com",
+  "maritalStatus": "SINGLE",
+  "biography": "Hey this is Alice. I am interested in CS.",
+  "accountType": "PERSONAL",
+  "dateOfBirth": "1997-03-24",
+  "joined": "2022-03-24T22:03:20.060Z",
+  "location": {
+    "latitude": "223",
+    "longitude": "532"
+  }
+}

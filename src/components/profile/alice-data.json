@@ -1,0 +1,17 @@
+{
+  "_id" : "345",
+  "username": "Davis",
+  "password": "****",
+  "firstName": "Davis",
+  "lastName": "Anthony",
+  "email": "advis@lakers.com",
+  "maritalStatus": "MARRIED",
+  "biography": "Admin user.",
+  "accountType": "ADMIN",
+  "dateOfBirth": "2000-03-24",
+  "joined": "2022-03-24T22:03:20.060Z",
+  "location": {
+    "latitude": "333",
+    "longitude": "555"
+  }
+}
