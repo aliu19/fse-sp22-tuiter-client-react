@@ -62,6 +62,11 @@ export const findUserByCredentials = (credentials) =>
   axios.post(`${LOGIN_API}`, credentials)
     .then(response => response.data);
 
+/**
+ * PUT method for udpating user's profile information
+ * @param newProfile User's profile information as a JSON object
+ * @returns {Promise<{message: string, status: number}>} TO-DO
+ */
 export const updateUserProfile = (newProfile) => {
   return Promise.resolve({message: "Successfully Registered", status: 201})
 }
