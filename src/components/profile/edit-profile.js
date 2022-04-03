@@ -1,6 +1,9 @@
 /**
  * @file Implements edit-profile component that displays user's information, and
  * enable them to manage their account.
+ * Users can click update to update their profile information
+ * Users can click delete to delete their account
+ * Users can click go-back to their profile page.
  */
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
@@ -9,6 +12,10 @@ import alice from "./alice-data.json"
 import admin from "./admin-user-data.json"
 import * as userService from "../../services/users-service";
 
+/**
+ * Implements EditProfile component that will fetch and display user's profile information and
+ * enables users to edit their profile information and delete their account
+ */
 const EditProfile = () => {
     const [profileInfo, setProfileInfo] = useState({});
 
@@ -20,6 +27,11 @@ const EditProfile = () => {
             })
     }, [])
 
+    /**
+     * A call back function that helps call user service
+     * to update user's profile information when user
+     * clicks the "save" button
+     */
     const handleUserUpdate = () => {
         let newProfile = profileInfo;
         if (profileInfo.password === '') {
@@ -37,11 +49,17 @@ const EditProfile = () => {
         }
     }
 
+    /**
+     * A call back function that helps call user service
+     * to delete current user account when user
+     * clicks "delete" button
+     */
     const handleDeleteAccount = () => {
         alert("Successfully deleted your account!")
     }
 
-    return (<div className="ttr-edit-profile">
+    return (
+        <div className="ttr-edit-profile">
             <div className="border border-bottom-0">
                 <Link to="/profile"
                       className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
@@ -178,7 +196,7 @@ const EditProfile = () => {
                                value="MARRIED"/>
                         <label for="married">Married</label>
                     </span>
-                    <span className='col'>
+                        <span className='col'>
                         <input id="single"
                                type="radio"
                                name="marital"
@@ -189,7 +207,7 @@ const EditProfile = () => {
                                value="SINGLE"/>
                         <label for="single">Single</label>
                     </span>
-                    <span className='col'>
+                        <span className='col'>
                         <input id="widow"
                                type="radio"
                                name="marital"
