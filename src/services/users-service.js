@@ -63,7 +63,7 @@ export const findUserByCredentials = (credentials) =>
     .then(response => response.data);
 
 /**
- * PUT method for udpating user's profile information
+ * PUT method for updating user's profile information
  * @param newProfile User's profile information as a JSON object
  * @returns {Promise<{message: string, status: number}>} TO-DO
  */
