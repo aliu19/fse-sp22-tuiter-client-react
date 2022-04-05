@@ -67,10 +67,10 @@ const EditProfile = () => {
                 </Link>
                 <span to="/profile"
                       onClick={() => handleUserUpdate()}
-                      className="btn btn-dark rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
+                      className="save-button btn btn-dark rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
                     Save
                 </span>
-                <Link className="btn btn-danger rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2"
+                <Link className="delete-button btn btn-danger rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2"
                       onClick={() => handleDeleteAccount()}
                       to='/'>
                     Delete
