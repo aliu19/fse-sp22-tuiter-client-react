@@ -7,7 +7,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const AUTH_API = `${BASE_URL}/api/auth`
 
-const api = axios.create({
+export const api = axios.create({
     withCredentials: true
 });
 
