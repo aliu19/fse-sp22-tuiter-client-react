@@ -23,7 +23,7 @@ const EditProfile = () => {
         authService.profile()
             .then(profile => {
                 console.log(profile)
-                setProfileInfo(admin);
+                setProfileInfo(profile);
             })
     }, [])
 
@@ -40,7 +40,7 @@ const EditProfile = () => {
             userService.updateUserProfile(newProfile)
                 .then(res => {
                     alert("Successfully Updated!")
-                    console.log(profileInfo)
+                    // console.log(profileInfo)
                     setProfileInfo(newProfile);
                 })
                 .catch(error => {
@@ -70,9 +70,10 @@ const EditProfile = () => {
                       className="save-button btn btn-dark rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
                     Save
                 </span>
-                <Link className="delete-button btn btn-danger rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2"
-                      onClick={() => handleDeleteAccount()}
-                      to='/'>
+                <Link
+                    className="delete-button btn btn-danger rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2"
+                    onClick={() => handleDeleteAccount()}
+                    to='/'>
                     Delete
                 </Link>
                 <h4 className="p-2 mb-0 pb-0 fw-bolder">Edit profile</h4>
@@ -94,14 +95,14 @@ const EditProfile = () => {
                            readOnly
                            className="p-0 form-control border-0"
                            placeholder="alan"
-                           value={profileInfo.username}/>
+                           value={profileInfo.username || ''}/>
                 </div>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
                     <label htmlFor="password">Reset password</label>
                     <input id="password"
                            className="p-0 form-control border-0"
                            type="password"
-                           value={profileInfo.password}
+                           value={profileInfo.password || ''}
                            onChange={(e) => {
                                setProfileInfo({...profileInfo, password: e.target.value})
                            }}
@@ -111,7 +112,7 @@ const EditProfile = () => {
                     <label htmlFor="first-name">First name</label>
                     <input id="first-name"
                            className="p-0 form-control border-0"
-                           value={profileInfo.firstName ? profileInfo.firstName : ""}
+                           value={profileInfo.firstName || ''}
                            onChange={(e) => {
                                setProfileInfo({...profileInfo, firstName: e.target.value})
                            }}
@@ -121,7 +122,7 @@ const EditProfile = () => {
                     <label htmlFor="last-name">Last name</label>
                     <input id="last-name"
                            className="p-0 form-control border-0"
-                           value={profileInfo.lastName}
+                           value={profileInfo.lastName || ''}
                            onChange={(e) => {
                                setProfileInfo({...profileInfo, lastName: e.target.value})
                            }}
@@ -131,7 +132,7 @@ const EditProfile = () => {
                     <label htmlFor="bio">Bio</label>
                     <textarea
                         className="p-0 form-control border-0"
-                        value={profileInfo.biography}
+                        value={profileInfo.biography || ''}
                         onChange={(e) => {
                             setProfileInfo({...profileInfo, biography: e.target.value})
                         }}
@@ -145,7 +146,7 @@ const EditProfile = () => {
                            onChange={(e) => {
                                setProfileInfo({...profileInfo, dateOfBirth: e.target.value})
                            }}
-                           value={profileInfo.dateOfBirth}/>
+                           value={profileInfo.dateOfBirth || ''}/>
                 </div>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
                     <label htmlFor="email">Email</label>
@@ -154,7 +155,7 @@ const EditProfile = () => {
                            onChange={(e) => {
                                setProfileInfo({...profileInfo, email: e.target.value})
                            }}
-                           value={profileInfo.email}
+                           value={profileInfo.email || ''}
                            type="email"/>
                 </div>
                 {/* TO-DO ? */}
@@ -171,10 +172,10 @@ const EditProfile = () => {
                 {/*         type="file"/>*/}
                 {/*</div>*/}
                 <div className="border border-secondary rounded-3 p-2 mb-3">
-                    <label for="account">Account type</label>
+                    <label htmlFor="account">Account type</label>
                     <select
                         disabled={true}
-                        value={profileInfo.accountType}
+                        value={profileInfo.accountType || ''}
                         className="p-0 form-control border-0"
                         id="account">
                         <option value="PERSONAL">Personal account</option>
@@ -194,7 +195,7 @@ const EditProfile = () => {
                                    setProfileInfo({...profileInfo, maritalStatus: e.target.value})
                                }}
                                value="MARRIED"/>
-                        <label for="married">Married</label>
+                        <label htmlFor="married">Married</label>
                     </span>
                         <span className='col'>
                         <input id="single"
@@ -205,7 +206,7 @@ const EditProfile = () => {
                                    setProfileInfo({...profileInfo, maritalStatus: e.target.value})
                                }}
                                value="SINGLE"/>
-                        <label for="single">Single</label>
+                        <label htmlFor="single">Single</label>
                     </span>
                         <span className='col'>
                         <input id="widow"
