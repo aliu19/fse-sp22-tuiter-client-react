@@ -62,8 +62,19 @@ export const findUserByCredentials = (credentials) =>
   axios.post(`${LOGIN_API}`, credentials)
     .then(response => response.data);
 
+/**
+ * PUT method for updating a user by their id
+ * @param uid User's primary key
+ * @param user A user object with all updated attributes
+ * @returns {Promise<AxiosResponse<any>>} Status on whether user is updated successfully or not
+ */
+export const updateUser = (uid, user) =>
+    axios.put(`${USERS_API}/${uid}`, user)
+      .then(response => response.data);
+
 const service = {
-  findAllUsers
+  findAllUsers,
+  updateUser
 }
 
 export default service;
