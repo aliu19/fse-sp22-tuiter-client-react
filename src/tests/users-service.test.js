@@ -162,7 +162,6 @@ describe('findAllUsers',  () => {
 describe('user can update their information', () => {
   // sample user
   const sowell = {
-    _id: "sowell",
     username: 'thommas_sowell',
     password: 'compromise',
     email: 'compromise@solutions.com'
@@ -174,9 +173,11 @@ describe('user can update their information', () => {
     email: 'uncompromise@solutions.com'
   }
 
+  let user;
+
   // set up the tests before verification
-  beforeAll(() => {
-    return createUser(sowell);
+  beforeAll(async () => {
+    user = await createUser(sowell);
   });
 
   // clean up after test runs
@@ -186,7 +187,7 @@ describe('user can update their information', () => {
   })
 
   test('user can update their information', async () => {
-    const status = await updateUser(sowell._id, newSowell);
+    const status = await updateUser(user._id, newSowell);
 
     expect(status.modifiedCount).toBeGreaterThanOrEqual(1);
   });
