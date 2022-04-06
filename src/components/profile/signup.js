@@ -1,8 +1,13 @@
+/**
+ * @file Implements Signup component for displaying sign up page
+ */
 import {useEffect, useState} from "react";
 import * as service from "../../services/auth-service";
 import {useNavigate} from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.css'; 
-import 'bootstrap/js/dist/dropdown';
+
+/**
+ * Sign up component that allow users to sign up with unsername, passeword, email, and role
+ */
 
 const Signup = () => {
     const [newUser, setNewUser] = useState({});
@@ -30,53 +35,28 @@ const Signup = () => {
                    onChange={(e) =>
                        setNewUser({...newUser, email: e.target.value})}
                    placeholder="email" type="email"/>
-            {/* <input className="btn btn-secondary dropdown-toggle form-control"
-                   onChange={(e) =>
-                       setNewUser({...newUser, AccountType: e.target.value})}
-                   placeholder="role"/> */}
-            {/* <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    User Role
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item">Action</a>
-                    <a className="dropdown-item">Another action</a>
-                    <a className="dropdown-item">Something else here</a>
-                </div>
-            </div> */}
             <div className="form-group row">
-                    <label className="col-sm-3 col-form-label">Sign up as:</label>
-                    <div className="col-sm-3 form-check">
+                    <label className="col-sm-4 col-form-label">Sign up as:</label>
+                    <div className="col-sm-4 form-check">
                         <input className="form-check-input" 
                             name='role'
                             type="radio"
-                            value='PERSONAL'
+                            value='GENERAL'
                             onChange={(e) =>
-                                setNewUser({...newUser, AccountType: e.target.value})}/>
+                                setNewUser({...newUser, role: e.target.value})}/>
                         <label className="form-check-label">
-                            PERSONAL
+                            GENERAL
                         </label>
                     </div>
-                    <div className="col-sm-3 form-check">
+                    <div className="col-sm-4 form-check">
                         <input className="form-check-input" 
                             name='role'
                             type="radio"
-                            value='ACADEMIC'
+                            value='ADMIN'
                             onChange={(e) =>
-                                setNewUser({...newUser, AccountType: e.target.value})}/>
+                                setNewUser({...newUser, role: e.target.value})}/>
                         <label className="form-check-label">
-                            ACADEMIC
-                        </label>
-                    </div>
-                    <div className="col-sm-3 form-check">
-                        <input className="form-check-input" 
-                            name='role'
-                            type="radio"
-                            value='PROFESSIONAL'
-                            onChange={(e) =>
-                                setNewUser({...newUser, AccountType: e.target.value})}/>
-                        <label className="form-check-label">
-                            PROFESSIONAL
+                            ADMIN
                         </label>
                     </div>
                 </div>

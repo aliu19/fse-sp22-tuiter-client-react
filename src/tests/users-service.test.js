@@ -10,7 +10,8 @@ describe('createUser', () => {
   const ripley = {
     username: 'ellenripley',
     password: 'lv426',
-    email: 'ellenripley@aliens.com'
+    email: 'ellenripley@aliens.com',
+    role: 'ADMIN'
   };
 
   // setup test before running test
@@ -33,6 +34,7 @@ describe('createUser', () => {
     expect(newUser.username).toEqual(ripley.username);
     expect(newUser.password).toEqual(ripley.password);
     expect(newUser.email).toEqual(ripley.email);
+    expect(newUser.role).toEqual(ripley.role);
   });
 });
 
@@ -94,6 +96,7 @@ describe('findUserById',  () => {
     expect(newUser.username).toEqual(adam.username);
     expect(newUser.password).toEqual(adam.password);
     expect(newUser.email).toEqual(adam.email);
+    expect(newUser.role).toEqual(adam.role);
 
     // retrieve the user from the database by its primary key
     const existingUser = await findUserById(newUser._id);
@@ -102,6 +105,7 @@ describe('findUserById',  () => {
     expect(existingUser.username).toEqual(adam.username);
     expect(existingUser.password).toEqual(adam.password);
     expect(existingUser.email).toEqual(adam.email);
+    expect(existingUser.role).toEqual(adam.role);
   });
 });
 
@@ -155,6 +159,7 @@ describe('findAllUsers',  () => {
       expect(user.username).toEqual(username);
       expect(user.password).toEqual(`${username}123`);
       expect(user.email).toEqual(`${username}@stooges.com`);
+      expect(user.role).toEqual('GENERAL');
     });
   });
 });
