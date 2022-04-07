@@ -11,6 +11,7 @@ import * as authService from "../../services/auth-service";
 import alice from "./alice-data.json"
 import admin from "./admin-user-data.json"
 import * as userService from "../../services/users-service";
+import {updateUser} from "../../services/users-service";
 
 /**
  * Implements EditProfile component that will fetch and display user's profile information and
@@ -18,6 +19,7 @@ import * as userService from "../../services/users-service";
  */
 const EditProfile = () => {
     const [profileInfo, setProfileInfo] = useState({});
+    const [passwordChanged, setPasswordChanged] = useState(false);
 
     useEffect(() => {
         authService.profile()
@@ -33,15 +35,20 @@ const EditProfile = () => {
      * clicks the "save" button
      */
     const handleUserUpdate = () => {
+        if (!passwordChanged) {
+            delete profileInfo.password
+        }
         let newProfile = profileInfo;
         if (profileInfo.password === '') {
             alert("Password cannot be empty")
         } else {
-            userService.updateUserProfile(newProfile)
+            console.log("update to it", newProfile)
+            userService.updateUser(newProfile._id, newProfile)
                 .then(res => {
                     alert("Successfully Updated!")
                     // console.log(profileInfo)
                     setProfileInfo(newProfile);
+                    setPasswordChanged(false);
                 })
                 .catch(error => {
                     alert("Failed to update!")
@@ -92,9 +99,11 @@ const EditProfile = () => {
                 <div className="border border-secondary rounded-3 p-2 mb-3">
                     <label htmlFor="username">Username</label>
                     <input id="username" title="Username"
-                           readOnly
                            className="p-0 form-control border-0"
                            placeholder="alan"
+                           onChange={(e) => {
+                               setProfileInfo({...profileInfo, username: e.target.value})
+                           }}
                            value={profileInfo.username || ''}/>
                 </div>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
@@ -102,8 +111,9 @@ const EditProfile = () => {
                     <input id="password"
                            className="p-0 form-control border-0"
                            type="password"
-                           value={profileInfo.password || ''}
+                           value={profileInfo.password || "*****"}
                            onChange={(e) => {
+                               setPasswordChanged(true);
                                setProfileInfo({...profileInfo, password: e.target.value})
                            }}
                     />
@@ -146,7 +156,7 @@ const EditProfile = () => {
                            onChange={(e) => {
                                setProfileInfo({...profileInfo, dateOfBirth: e.target.value})
                            }}
-                           value={profileInfo.dateOfBirth || ''}/>
+                           value={profileInfo.dateOfBirth? profileInfo.dateOfBirth.split('T')[0] : ""}/>
                 </div>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
                     <label htmlFor="email">Email</label>
@@ -172,14 +182,14 @@ const EditProfile = () => {
                 {/*         type="file"/>*/}
                 {/*</div>*/}
                 <div className="border border-secondary rounded-3 p-2 mb-3">
-                    <label htmlFor="account">Account type</label>
+                    <label htmlFor="account">Role</label>
                     <select
                         disabled={true}
-                        value={profileInfo.accountType || ''}
+                        value={profileInfo.role || ''}
                         className="p-0 form-control border-0"
                         id="account">
-                        <option value="PERSONAL">Personal account</option>
-                        <option value="ADMIN">Admin account</option>
+                        <option value="GENERAL">General User</option>
+                        <option value="ADMIN">Admin User</option>
                     </select>
                 </div>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
