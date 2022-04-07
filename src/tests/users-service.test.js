@@ -2,7 +2,7 @@ import {
   createUser,
   deleteUsersByUsername,
   findAllUsers,
-  findUserById
+  findUserById, updateUser
 } from "../services/users-service";
 
 describe('createUser', () => {
@@ -158,3 +158,37 @@ describe('findAllUsers',  () => {
     });
   });
 });
+
+describe('user can update their information', () => {
+  // sample user
+  const sowell = {
+    username: 'thommas_sowell',
+    password: 'compromise',
+    email: 'compromise@solutions.com'
+  };
+
+  const newSowell = {
+    username: 'tommy_sowell',
+    password: 'uncompromise',
+    email: 'uncompromise@solutions.com'
+  }
+
+  let user;
+
+  // set up the tests before verification
+  beforeAll(async () => {
+    user = await createUser(sowell);
+  });
+
+  // clean up after test runs
+  afterAll(() => {
+    // remove any data we created
+    return deleteUsersByUsername(newSowell.username);
+  })
+
+  test('user can update their information', async () => {
+    const status = await updateUser(user._id, newSowell);
+
+    expect(status.modifiedCount).toBeGreaterThanOrEqual(1);
+  });
+})
