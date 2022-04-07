@@ -63,19 +63,18 @@ export const findUserByCredentials = (credentials) =>
     .then(response => response.data);
 
 /**
- * PUT method for updating user's profile information
- * @param newProfile User's profile information as a JSON object
- * @returns {Promise<{message: string, status: number}>} TO-DO
+ * PUT method for updating a user by their id
+ * @param uid User's primary key
+ * @param user A user object with all updated attributes
+ * @returns {Promise<AxiosResponse<any>>} Status on whether user is updated successfully or not
  */
-export const updateUserProfile = (newProfile) => {
-  return Promise.resolve({message: "Successfully Registered", status: 201})
-}
-    // axios.put(`${USERS_API}`, newProfile)
-        // .then(response => response.data)
-        // .then(res => {message: "Successfully Registered", status: 201})
+export const updateUser = (uid, user) =>
+    axios.put(`${USERS_API}/${uid}`, user)
+        .then(response => response.data);
 
 const service = {
-  findAllUsers
+  findAllUsers,
+  updateUser
 }
 
 export default service;
