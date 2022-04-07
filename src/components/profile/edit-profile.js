@@ -119,6 +119,13 @@ const EditProfile = () => {
                     />
                 </div>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label htmlFor="joined-date">Joined date</label>
+                    <input id="joined-date"
+                           readOnly
+                           className="p-0 form-control border-0"
+                           value={profileInfo.joined? profileInfo.joined.split('T')[0] : ""}/>
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
                     <label htmlFor="first-name">First name</label>
                     <input id="first-name"
                            className="p-0 form-control border-0"
