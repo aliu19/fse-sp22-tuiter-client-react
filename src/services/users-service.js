@@ -70,7 +70,7 @@ export const findUserByCredentials = (credentials) =>
  */
 export const updateUser = (uid, user) =>
     axios.put(`${USERS_API}/${uid}`, user)
-        .then(response => response.data);
+      .then(response => response.data);
 
 const service = {
   findAllUsers,
