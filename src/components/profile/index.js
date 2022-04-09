@@ -77,6 +77,12 @@ const Profile = () => {
           </p>
           <b>178</b> Following
           <b className="ms-4">51.1M</b> Followers
+          {
+            profile.role === 'ADMIN' &&
+            <a href="/#/admin"
+               className="mt-3 btn btn-lg btn-warning rounded-pill w-100 fw-bold text-white">
+              Admin Page</a>
+          }
           <ul className="mt-4 nav nav-pills nav-fill">
             <li className="nav-item">
               <Link to="/profile/mytuits"
@@ -109,10 +115,6 @@ const Profile = () => {
       </div>
       <Routes>
         <Route path="/mytuits" element={<MyTuits/>}/>
-        {/*<Route path="/tuits-and-replies"*/}
-        {/*       element={<TuitsAndReplies/>}/>*/}
-        {/*<Route path="/media"*/}
-        {/*       element={<Media/>}/>*/}
         <Route path="/mylikes" element={<MyLikes/>}/>
         <Route path="/mydislikes" element={<MyDislikes/>}/>
       </Routes>
