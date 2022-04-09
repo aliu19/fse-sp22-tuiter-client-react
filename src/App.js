@@ -13,7 +13,7 @@ function App() {
     return (
         <HashRouter>
             <Routes>
-              <Route path='/admin' element={<Admin/>}/>
+              <Route path='/admin/*' element={<Admin/>}/>
               <Route path='/*' element={<Tuiter/>}/>
             </Routes>
         </HashRouter>
