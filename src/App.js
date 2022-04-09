@@ -6,11 +6,18 @@ import './styles.css';
 // import WhatsHappening from "./components/whats-happening/whats-happening";
 // import Bookmarks from "./components/bookmarks/bookmarks";
 import Tuiter from "./components/tuiter";
+import {HashRouter, Route, Routes} from "react-router-dom";
+import Admin from "./components/admin";
 
 function App() {
-  return (
-    <Tuiter/>
-  );
+    return (
+        <HashRouter>
+            <Routes>
+              <Route path='/admin' element={<Admin/>}/>
+              <Route path='/*' element={<Tuiter/>}/>
+            </Routes>
+        </HashRouter>
+    );
 }
 
 export default App;
