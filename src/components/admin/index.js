@@ -43,7 +43,10 @@ const Admin = () => {
                                 <Nav.Link eventKey="tuits">Tuits Table</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="search-users">Search User</Nav.Link>
+                                <Nav.Link eventKey="search-users">Search Users</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="search-tuits">Search Tuits</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Col>
@@ -57,8 +60,11 @@ const Admin = () => {
                             <Tab.Pane eventKey="tuits">
                                 {/*<SellerTable />*/}
                             </Tab.Pane>
-                            <Tab.Pane eventKey="search-user">
+                            <Tab.Pane eventKey="search-users">
                                 {/*<BuyerTable />*/}
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="search-tuits">
+
                             </Tab.Pane>
                         </Tab.Content>
                     </Col>
