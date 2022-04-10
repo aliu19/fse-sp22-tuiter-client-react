@@ -21,7 +21,7 @@ const UsersTable = () => {
                 <tbody>
                 {
                     allUsers.map(user =>
-                                     <tr>
+                                     <tr key={user._id}>
                                          <td>
                                              <Link to={`/admin/profile/${user._id}`}>
                                                  <h5>{user.username}</h5>
