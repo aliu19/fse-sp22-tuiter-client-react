@@ -1,9 +1,8 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import TuitVideo from "../../tuits/tuit-video";
-import TuitImage from "../../tuits/tuit-image";
+import React, {useState} from "react";
 
 const EditableTuit = ({tuit}) => {
+    const [tuitCache, setTuitCache] = useState(tuit);
+    const [editing, setEditing] = useState(false);
     const daysOld = (tuit) => {
         const now = new Date();
         const nowMillis = now.getTime();
@@ -11,17 +10,17 @@ const EditableTuit = ({tuit}) => {
         const postedMillis = posted.getTime();
         const oldMillis = nowMillis - postedMillis;
         let old = 0.0;
-        const secondsOld = oldMillis/1000.0;
-        const minutesOld = secondsOld/60.0;
-        const hoursOld = minutesOld/60.0;
-        const daysOld = hoursOld/24.0;
-        if(daysOld > 1) {
+        const secondsOld = oldMillis / 1000.0;
+        const minutesOld = secondsOld / 60.0;
+        const hoursOld = minutesOld / 60.0;
+        const daysOld = hoursOld / 24.0;
+        if (daysOld > 1) {
             old = Math.round(daysOld) + 'd';
-        } else if(hoursOld > 1) {
+        } else if (hoursOld > 1) {
             old = Math.round(hoursOld) + 'h';
-        } else if(minutesOld > 1) {
+        } else if (minutesOld > 1) {
             old = Math.round(minutesOld) + 'm';
-        } else if(secondsOld > 1) {
+        } else if (secondsOld > 1) {
             old = Math.round(secondsOld) + 's';
         } else {
             old = "just now"
@@ -40,11 +39,43 @@ const EditableTuit = ({tuit}) => {
                 }
             </div>
             <div className="w-100">
+                {
+                    !editing &&
+                    <i className='float-end fa fa-cog edit-button'
+                       onClick={() => {
+                           setEditing(true)
+                       }}/>
+                }
+                {
+                    editing &&
+                    <div className='up-del-buttons'>
+                        <i onClick={() => {
+                            setEditing(false)
+                        }}
+                           className="float-end fa fa-check"/>
+                        <i
+                            onClick={() => {
+                            }}
+                            className="float-end fa fa-trash mr-1"/>
+                    </div>
+                }
                 <h2
                     className="fs-5">
                     {tuit.postedBy && tuit.postedBy.username}
-                    @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> </h2>
-                {tuit.tuit}
+                    @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(
+                    tuit)}</span></h2>
+                {
+                    !editing &&
+                    tuit.tuit
+                }
+                {
+                    editing &&
+                    <textarea value={tuitCache.tuit}
+                           onChange={(e) => {
+                               setTuitCache({...tuitCache, tuit: e.target.value})
+                           }}
+                           className="form-control mb-3"/>
+                }
             </div>
         </li>
     )
