@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
 import UsersTable from "./users-manager/users-table";
@@ -8,7 +8,6 @@ import SearchUsers from "./users-manager/search-users";
 import AllTuits from "./tuits-manager/all-tuits";
 
 const Admin = () => {
-    const {currentPage} = useParams();
     const [key, setKey] = useState('users');
     const [admin, setAdmin] = useState({});
     const navigate = useNavigate();
@@ -43,7 +42,7 @@ const Admin = () => {
                                 <Nav.Link eventKey="users">Users Table</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="tuits">Tuits Table</Nav.Link>
+                                <Nav.Link eventKey="tuits">Tuits List</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link eventKey="search-users">Search Users</Nav.Link>
