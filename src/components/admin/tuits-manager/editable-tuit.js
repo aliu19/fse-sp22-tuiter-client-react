@@ -40,22 +40,11 @@ const EditableTuit = ({tuit}) => {
                 }
             </div>
             <div className="w-100">
-                <Link to={`/tuit/${tuit._id}`}>
-                    <i className="float-end tuit-button fas fa-circle-ellipsis me-1"/>
-                </Link>
                 <h2
                     className="fs-5">
                     {tuit.postedBy && tuit.postedBy.username}
                     @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> </h2>
                 {tuit.tuit}
-                {
-                    tuit.youtube &&
-                    <TuitVideo tuit={tuit}/>
-                }
-                {
-                    tuit.image &&
-                    <TuitImage tuit={tuit}/>
-                }
             </div>
         </li>
     )
