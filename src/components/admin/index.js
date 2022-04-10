@@ -3,6 +3,9 @@ import {useNavigate, useParams} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
 import UsersTable from "./users-manager/users-table";
+import SearchTuits from "./tuits-manager/search-tuits";
+import SearchUsers from "./users-manager/search-users";
+import AllTuits from "./tuits-manager/all-tuits";
 
 const Admin = () => {
     const {currentPage} = useParams();
@@ -52,19 +55,17 @@ const Admin = () => {
                     </Col>
                     <Col sm={9}>
                         <Tab.Content>
-
                             <Tab.Pane eventKey="users">
                                 <UsersTable/>
                             </Tab.Pane>
-
                             <Tab.Pane eventKey="tuits">
-                                {/*<SellerTable />*/}
+                                <AllTuits/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="search-users">
-                                {/*<BuyerTable />*/}
+                                <SearchUsers/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="search-tuits">
-
+                                <SearchTuits/>
                             </Tab.Pane>
                         </Tab.Content>
                     </Col>
