@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
+import UsersTable from "./users-manager/users-table";
 
 const Admin = () => {
     const {currentPage} = useParams();
@@ -12,13 +13,17 @@ const Admin = () => {
         try {
             authService.profile()
                 .then(admin => {
+                    if (admin.role !== 'ADMIN') {
+                        alert("Must logged in as an admin user.")
+                        navigate('/login')
+                    }
                     setAdmin(admin)
                 })
         } catch (e) {
             alert("Must logged in as an admin user.")
             navigate('/login')
         }
-    })
+    }, [])
 
     return (
         <div className='container-fluid'>
@@ -46,8 +51,7 @@ const Admin = () => {
                         <Tab.Content>
 
                             <Tab.Pane eventKey="users">
-
-                                {/*<ProductsInstock />*/}
+                                <UsersTable/>
                             </Tab.Pane>
 
                             <Tab.Pane eventKey="tuits">

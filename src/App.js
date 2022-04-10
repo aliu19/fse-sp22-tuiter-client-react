@@ -8,13 +8,15 @@ import './styles.css';
 import Tuiter from "./components/tuiter";
 import {HashRouter, Route, Routes} from "react-router-dom";
 import Admin from "./components/admin";
+import AdminEditProfile from "./components/admin/users-manager/admin-edit-profile";
 
 function App() {
     return (
         <HashRouter>
             <Routes>
-              <Route path='/admin/*' element={<Admin/>}/>
-              <Route path='/*' element={<Tuiter/>}/>
+                <Route path='/admin/*' element={<Admin/>}/>
+                <Route path='/admin/profile/:uid' element={<AdminEditProfile/>}/>
+                <Route path='/*' element={<Tuiter/>}/>
             </Routes>
         </HashRouter>
     );
