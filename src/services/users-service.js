@@ -7,6 +7,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const LOGIN_API = `${BASE_URL}/api/login`;
 const USERS_API = `${BASE_URL}/api/users`;
+const ADMIN_API = `${BASE_URL}/api/admin`
 
 /**
  * POST method to create a new user
@@ -71,6 +72,16 @@ export const findUserByCredentials = (credentials) =>
 export const updateUser = (uid, user) =>
     axios.put(`${USERS_API}/${uid}`, user)
       .then(response => response.data);
+
+/**
+ * POST method to create a new user by Admin
+ * @param user A new user object with all required attributes
+ * @returns {Promise<AxiosResponse<any>>} JSON contains the new User that was
+ * inserted into the database or error status
+ */
+export const adminCreateUser = (user) =>
+    axios.post(`${ADMIN_API}`, user)
+        .then(response => response.data)
 
 const service = {
   findAllUsers,
