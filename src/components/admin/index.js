@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
 import UsersTable from "./users-manager/users-table";
 import SearchTuits from "./tuits-manager/search-tuits";
 import SearchUsers from "./users-manager/search-users";
 import AllTuits from "./tuits-manager/all-tuits";
+import UsersTableManager from "./users-manager/users-table-manager";
 
 const Admin = () => {
     const [key, setKey] = useState('users');
@@ -29,7 +30,10 @@ const Admin = () => {
 
     return (
         <div className='container-fluid'>
-            <h2> Admin</h2>
+            <div className='row'>
+                <Link to="/profile"><i className="fas fa-arrow-circle-left"/> Back to Profile</Link>
+                <h2> Admin</h2>
+            </div>
             <Tab.Container id="left-tabs-example" defaultActiveKey="users">
                 <Row>
                     <Col sm={3}>
@@ -55,7 +59,7 @@ const Admin = () => {
                     <Col sm={9}>
                         <Tab.Content>
                             <Tab.Pane eventKey="users">
-                                <UsersTable/>
+                                <UsersTableManager/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="tuits">
                                 <AllTuits/>

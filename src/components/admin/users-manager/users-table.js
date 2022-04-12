@@ -3,15 +3,13 @@ import * as usersService from "../../../services/users-service";
 import {Table} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-const UsersTable = () => {
-    const [allUsers, setAllUsers] = useState([]);
+const UsersTable = ({users}) => {
+    const [allUsers, setAllUsers] = useState(users);
 
     useEffect(() => {
-        usersService.findAllUsers()
-            .then(users => {
-                setAllUsers(users);
-            })
-    }, [])
+        setAllUsers(users)
+    }, [users])
+
     return (
         <div>
             <h2>Users</h2>
