@@ -6,18 +6,16 @@
  * Users can click go-back to their profile page.
  */
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import * as authService from "../../services/auth-service";
-import alice from "./alice-data.json"
-import admin from "./admin-user-data.json"
 import * as userService from "../../services/users-service";
-import {updateUser} from "../../services/users-service";
 
 /**
  * Implements EditProfile component that will fetch and display user's profile information and
  * enables users to edit their profile information and delete their account
  */
 const EditProfile = () => {
+    const navigate = useNavigate();
     const [profileInfo, setProfileInfo] = useState({});
     const [passwordChanged, setPasswordChanged] = useState(false);
 
@@ -62,7 +60,14 @@ const EditProfile = () => {
      * clicks "delete" button
      */
     const handleDeleteAccount = () => {
-        alert("Successfully deleted your account!")
+        userService.deleteUser(profileInfo._id)
+            .then(()=> {
+                alert("Successfully delete your account!")
+                navigate("/")
+            })
+            .catch((e) => {
+                alert("Failed to delete your account. Try again later!")
+            })
     }
 
     return (
