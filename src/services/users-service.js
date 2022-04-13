@@ -21,7 +21,7 @@ export const createUser = (user) =>
 
 /**
  * GET method for getting all users
- * @returns {Promise<AxiosResponse<any>>} JSON array cotains all users
+ * @returns {Promise<AxiosResponse<any>>} JSON array contains all users
  */
 export const findAllUsers = () =>
     axios.get(USERS_API)
@@ -90,6 +90,15 @@ export const adminCreateUser = (user) =>
  */
 export const adminDeleteUser = (uid) =>
     axios.delete(`${ADMIN_API}/${uid}`)
+        .then(response => response.data)
+
+/**
+ * GET method for finding users that possibly matched username for admin
+ * @param username Users' username
+ * @returns {Promise<AxiosResponse<any>>} JSON array contains all users that possibly matched username
+ */
+export const searchByUsername = (username) =>
+    axios.get(`${ADMIN_API}/${username}`)
         .then(response => response.data)
 
 const service = {
