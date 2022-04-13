@@ -1,7 +1,14 @@
 import React, {useState} from "react";
+import UsersTable from "./users-table";
 
 const SearchUsers = () => {
     const [searchName, setSearchName] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
+    const searchUsers = () => {
+
+    }
+
     return (
         <div>
             <h2>Search users</h2>
@@ -12,7 +19,7 @@ const SearchUsers = () => {
                                setSearchName(event.target.value)
                            }}
                            className="form-control"
-                           placeholder="please search User's username"/>
+                           placeholder="Please search User's username"/>
                 </div>
                 <div className="col-3">
                     <button
@@ -21,6 +28,17 @@ const SearchUsers = () => {
                     </button>
                 </div>
             </div>
+            <br/>
+            {
+                !searchResults.length
+                &&
+                <h2>No Results</h2>
+            }
+            {
+                searchResults.length > 0
+                &&
+                <UsersTable users={searchResults}/>
+            }
         </div>
     )
 }
