@@ -7,7 +7,7 @@ const AllTuits = () => {
     const {currentPage} = useParams();
     const [allTuits, setAllTuits] = useState([]);
     const deleteTuit = (tid) => {
-        tuitsService.adminDeleteTuit(tid)
+        tuitsService.deleteTuit(tid)
             .then(res => {
                 let updatedTuits = allTuits.filter(t => t._id !== tid);
                 setAllTuits(updatedTuits);
@@ -24,7 +24,7 @@ const AllTuits = () => {
 
     return(
         <div>
-            <h2>All tuits</h2>
+            <h2>All Tuits</h2>
             <EditableTuits 
             deleteTuit={deleteTuit}
             allTuits={allTuits}/>

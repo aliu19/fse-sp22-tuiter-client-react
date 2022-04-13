@@ -79,12 +79,3 @@ export const deleteTuit = (tid) =>
 export const deleteTuitByContent = (content) =>
     api.delete(`${TUITS_API}/byContent/${content}`)
         .then(response => response.data)
-
-/**
- * DELETE method for deleting a particular tuit by Admin using tuit's primary key
- * @param tid Tuit's primary key
- * @returns {Promise<AxiosResponse<any>>} status on whether tuit is removed
- */
- export const adminDeleteTuit = (tid) =>
- axios.delete(`${ADMIN_API}/${tid}`)
-     .then(response => response.data)
