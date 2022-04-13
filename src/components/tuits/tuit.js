@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 import React, {useState} from "react";
 
 
-const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
+const Tuit = ({tuit, deleteTuit, updateTuit, likeTuit, dislikeTuit}) => {
     const [tuitCache, setTuitCache] = useState(tuit);
     const [editing, setEditing] = useState(false);
     const daysOld = (tuit) => {
@@ -65,6 +65,7 @@ const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
                     <div className='up-del-buttons'>
                         <i onClick={() => {
                             setEditing(false)
+                            updateTuit()
                         }}
                            className="float-end fa fa-check"/>
                     </div>

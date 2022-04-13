@@ -61,7 +61,10 @@ const Tuits = ({tuits = [], refreshTuits}) => {
         tuitService.deleteTuit(tid)
             .then(refreshTuits);
 
-    
+    const updateTuit = (tid) => {
+      let newTuit = profile;
+      console.log('update tuit', newTuit)
+    }
 
     return (
     <div>
@@ -71,6 +74,7 @@ const Tuits = ({tuits = [], refreshTuits}) => {
             return (
               <Tuit key={tuit._id}
                     deleteTuit={deleteTuit}
+                    updateTuit={updateTuit}
                     likeTuit={likeTuit}
                     dislikeTuit={dislikeTuit}
                     tuit={tuit}/>
