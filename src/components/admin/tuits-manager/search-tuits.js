@@ -1,12 +1,21 @@
 import React, {useState} from "react";
 import EditableTuits from "./editable-tuits";
+import {searchByTuit} from "../../../services/tuits-service";
 
 const SearchTuits = () => {
     const [searchTuit, setSearchTuit] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
     const searchTuits = () => {
-
+        if (searchTuit === '') {
+            alert('Please type a tuit before search!')
+            return;
+        }
+        searchByTuit(searchTuit)
+            .then((tuits) => {
+                console.log(tuits)
+                setSearchResults(tuits);
+            })
     }
 
     return (
@@ -23,6 +32,7 @@ const SearchTuits = () => {
                 </div>
                 <div className="col-3">
                     <button
+                        onClick={searchTuits}
                         className="btn btn-primary btn-block">
                         Search
                     </button>
@@ -37,7 +47,7 @@ const SearchTuits = () => {
             {
                 searchResults.length > 0
                 &&
-                <EditableTuits tuits={searchResults}/>
+                <EditableTuits allTuits={searchResults}/>
             }
         </div>
     )
