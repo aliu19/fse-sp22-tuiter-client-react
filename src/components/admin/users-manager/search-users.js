@@ -1,12 +1,30 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import UsersTable from "./users-table";
+import * as usersService from "../../../services/users-service";
+import * as authService from "../../../services/auth-service";
+import {searchByUsername} from "../../../services/users-service";
 
 const SearchUsers = () => {
     const [searchName, setSearchName] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [currentAdminId, setCurrentAdminId] = useState("");
+
+    useEffect(async () => {
+        const profile = await authService.profile().catch(e => alert("Must logged in as an admin user!"));
+        setCurrentAdminId(profile._id);
+    }, [])
 
     const searchUsers = () => {
-
+        if (searchName === '') {
+            alert('Please type a name before search!')
+            return;
+        }
+        usersService.searchByUsername(searchName)
+            .then((users) => {
+                let results = users.filter(u => u._id !== currentAdminId);
+                setSearchResults(results);
+                console.log(results);
+            })
     }
 
     return (
@@ -23,6 +41,7 @@ const SearchUsers = () => {
                 </div>
                 <div className="col-3">
                     <button
+                        onClick={searchUsers}
                         className="btn btn-primary btn-block">
                         Search
                     </button>
