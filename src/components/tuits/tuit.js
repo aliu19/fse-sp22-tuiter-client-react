@@ -1,13 +1,16 @@
 /**
  * @file Implement Tuit component for displaying each tuit
  */
-import React, {useEffect} from "react";
 import TuitStats from "./tuit-stats";
 import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 import {Link} from "react-router-dom";
+import React, {useState} from "react";
+
 
 const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
+    const [tuitCache, setTuitCache] = useState(tuit);
+    const [editing, setEditing] = useState(false);
     const daysOld = (tuit) => {
         const now = new Date();
         const nowMillis = now.getTime();
@@ -47,14 +50,41 @@ const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
                     <i onClick={() => deleteTuit(tuit._id)}
                        className="fas fa-remove tuit-button fa-2x fa-pull-right"/>
                 }
-                <Link to={`/tuit/${tuit._id}`}>
+                {/* <Link to={`/tuit/${tuit._id}`}>
                     <i className="float-end tuit-button fas fa-circle-ellipsis me-1"/>
-                </Link>
+                </Link> */}
+                {
+                    !editing &&
+                    <i className='float-end fa fa-cog edit-button'
+                       onClick={() => {
+                           setEditing(true)
+                       }}/>
+                }
+                {
+                    editing &&
+                    <div className='up-del-buttons'>
+                        <i onClick={() => {
+                            setEditing(false)
+                        }}
+                           className="float-end fa fa-check"/>
+                    </div>
+                }
                 <h2
                     className="fs-5">
                     {tuit.postedBy && tuit.postedBy.username}
                     @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> </h2>
-                {tuit.tuit}
+                {
+                    !editing &&
+                    tuit.tuit
+                }
+                {
+                    editing &&
+                    <textarea value={tuitCache.tuit}
+                           onChange={(e) => {
+                               setTuitCache({...tuitCache, tuit: e.target.value})
+                           }}
+                           className="form-control mb-3"/>
+                }
                 {
                     tuit.youtube &&
                     <TuitVideo tuit={tuit}/>
