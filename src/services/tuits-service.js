@@ -5,8 +5,10 @@ import axios from "axios";
 // const BASE_URL = "https://cs5500-node-a3.herokuapp.com/api";
 // const BASE_URL = "http://localhost:4000/api";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const TUITS_API = `${BASE_URL}/api/tuits`;
 const USERS_API = `${BASE_URL}/api/users`;
+const ADMIN_API = `${BASE_URL}/api/admin`
 
 export const api = axios.create({
     withCredentials: true
@@ -77,3 +79,12 @@ export const deleteTuit = (tid) =>
 export const deleteTuitByContent = (content) =>
     api.delete(`${TUITS_API}/byContent/${content}`)
         .then(response => response.data)
+
+/**
+ * DELETE method for deleting a particular tuit by Admin using tuit's primary key
+ * @param tid Tuit's primary key
+ * @returns {Promise<AxiosResponse<any>>} status on whether tuit is removed
+ */
+ export const adminDeleteTuit = (tid) =>
+ axios.delete(`${ADMIN_API}/${tid}`)
+     .then(response => response.data)

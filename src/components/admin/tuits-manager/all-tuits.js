@@ -6,18 +6,28 @@ import {useParams} from "react-router-dom";
 const AllTuits = () => {
     const {currentPage} = useParams();
     const [allTuits, setAllTuits] = useState([]);
-
-    useEffect(() => {
-        tuitsService.findAllTuits()
-            .then(tuits=> {
-                setAllTuits(tuits);
+    const deleteTuit = (tid) => {
+        tuitsService.adminDeleteTuit(tid)
+            .then(res => {
+                let updatedTuits = allTuits.filter(t => t._id !== tid);
+                setAllTuits(updatedTuits);
+                alert("Tuti successfully deleted!")
             })
+            .catch(e => alert("Try again later!"))
+    }
+
+    useEffect(async () => {
+        let fetchTuits = await tuitsService.findAllTuits()
+        setAllTuits(fetchTuits);
+   
     }, [])
 
     return(
         <div>
             <h2>All tuits</h2>
-            <EditableTuits allTuits={allTuits}/>
+            <EditableTuits 
+            deleteTuit={deleteTuit}
+            allTuits={allTuits}/>
         </div>
     )
 }
