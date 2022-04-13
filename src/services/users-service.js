@@ -83,6 +83,15 @@ export const adminCreateUser = (user) =>
     axios.post(`${ADMIN_API}`, user)
         .then(response => response.data)
 
+/**
+ * DELETE method for deleting a particular user by Admin using user's primary key
+ * @param uid User's primary key
+ * @returns {Promise<AxiosResponse<any>>} status on whether user is removed
+ */
+export const adminDeleteUser = (uid) =>
+    axios.delete(`${ADMIN_API}/${uid}`)
+        .then(response => response.data)
+
 const service = {
   findAllUsers,
   updateUser
