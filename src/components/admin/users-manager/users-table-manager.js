@@ -1,19 +1,17 @@
 import React, {useEffect, useState} from "react";
 import * as usersService from "../../../services/users-service";
 import UsersTable from "./users-table";
-import {adminCreateUser} from "../../../services/users-service";
+import * as authService from "../../../services/auth-service";
 
 const UsersTableManager = () => {
     const [allUsers, setAllUsers] = useState([]);
-    const [newUser, setNewUser] = useState({
-                                               role: 'GENERAL'
-                                           });
+    const [newUser, setNewUser] = useState({role: 'GENERAL'});
 
-    useEffect(() => {
-        usersService.findAllUsers()
-            .then(users => {
-                setAllUsers(users);
-            })
+    useEffect(async () => {
+        const profile = await authService.profile().catch(e => alert("Must logged in as an admin user!"));
+        let fetchUsers = await usersService.findAllUsers();
+        fetchUsers = fetchUsers.filter(u => u._id !== profile._id);
+        setAllUsers(fetchUsers);
     }, [])
 
     const createANewUser = () => {
@@ -35,6 +33,16 @@ const UsersTableManager = () => {
             console.log(e)
             alert("Please try again!")
         }
+    }
+
+    const deleteUser = (uid) => {
+        usersService.adminDeleteUser(uid)
+            .then(res => {
+                let updatedUsers = allUsers.filter(u => u._id !== uid);
+                setAllUsers(updatedUsers);
+                alert("Successfully deleted!")
+            })
+            .catch(e => alert("Try again later!"))
     }
 
     return (
@@ -86,7 +94,9 @@ const UsersTableManager = () => {
                         className="btn btn-success mb-5">Create a new User
                 </button>
             </div>
-            <UsersTable users={allUsers}/>
+            <UsersTable
+                deleteUser={deleteUser}
+                users={allUsers}/>
         </div>
     )
 }
