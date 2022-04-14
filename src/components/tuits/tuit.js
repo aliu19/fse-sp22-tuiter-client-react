@@ -65,7 +65,7 @@ const Tuit = ({tuit, deleteTuit, updateTuit, likeTuit, dislikeTuit}) => {
                     <div className='up-del-buttons'>
                         <i onClick={() => {
                             setEditing(false)
-                            updateTuit()
+                            updateTuit(tuit)
                         }}
                            className="float-end fa fa-check"/>
                     </div>

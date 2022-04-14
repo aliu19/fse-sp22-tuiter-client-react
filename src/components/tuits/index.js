@@ -61,8 +61,7 @@ const Tuits = ({tuits = [], refreshTuits}) => {
         tuitService.deleteTuit(tid)
             .then(refreshTuits);
 
-    const updateTuit = (tid) => {
-      let newTuit = profile;
+    const updateTuit = (newTuit) => {
       console.log('update tuit', newTuit)
     }
 
