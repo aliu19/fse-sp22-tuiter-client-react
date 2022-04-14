@@ -79,6 +79,12 @@ export const deleteTuitByContent = (content) =>
     api.delete(`${TUITS_API}/byContent/${content}`)
         .then(response => response.data)
 
+/**
+ * GET method for searching tuits by content for admins
+ * @param tuit tuit's content
+ * @returns {Promise<AxiosResponse<any>>} Body formatted as JSON array containing all the tuits
+ * that matches the content.
+ */
 export const searchByTuit = (tuit) =>
     api.get(`${ADMIN_API}/${tuit}/tuits`)
         .then(response => response.data)

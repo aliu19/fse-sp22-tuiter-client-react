@@ -1,5 +1,13 @@
+/**
+ * @file Implement editable tuit component that display each
+ * individual tuit and enables admins to manage the tuit.
+ */
 import React, {useState} from "react";
 
+/**
+ * Implements editable tuit component that display each tuit
+ * and enables admins to edit/delete the tuit.
+ */
 const EditableTuit = ({tuit}) => {
     const [tuitCache, setTuitCache] = useState(tuit);
     const [editing, setEditing] = useState(false);
