@@ -7,7 +7,7 @@
  * Search tuits: Allows admins to search tuits by contents.
  */
 import React, {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
 import SearchTuits from "./tuits-manager/search-tuits";
@@ -20,7 +20,8 @@ import UsersTableManager from "./users-manager/users-table-manager";
  * Users table, tuits list, search users, search tuits.
  */
 const Admin = () => {
-    const [key, setKey] = useState('users');
+    const {currentPage} = useParams()
+    const [key, setKey] = useState(currentPage);
     const [admin, setAdmin] = useState({});
     const navigate = useNavigate();
     useEffect(() => {
@@ -45,7 +46,9 @@ const Admin = () => {
                 <Link to="/profile"><i className="fas fa-arrow-circle-left"/> Back to Profile</Link>
                 <h2> Admin</h2>
             </div>
-            <Tab.Container id="left-tabs-example" defaultActiveKey="users">
+            <Tab.Container
+                id="left-tabs-example"
+                activeKey={key}>
                 <Row>
                     <Col sm={3}>
                         <Nav variant="pills" className="flex-column"
