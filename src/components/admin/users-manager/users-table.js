@@ -29,7 +29,7 @@ const UsersTable = ({users, deleteUser}) => {
                 {
                     allUsers.map(user =>
                                      <tr key={user._id}>
-                                         <td>
+                                         <td className='username-field'>
                                              <Link to={`/admin/profile/${user._id}`}>
                                                  <h5>{user.username}</h5>
                                              </Link>
