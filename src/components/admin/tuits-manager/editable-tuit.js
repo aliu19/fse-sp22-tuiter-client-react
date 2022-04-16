@@ -49,7 +49,8 @@ const EditableTuit = ({tuit}) => {
             <div className="w-100">
                 {
                     !editing &&
-                    <i className='float-end fa fa-pen edit-button'
+                    <i data-testid='edit-button'
+                       className='float-end fa fa-pen edit-button'
                        onClick={() => {
                            setEditing(true)
                        }}/>
