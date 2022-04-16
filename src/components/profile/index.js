@@ -79,7 +79,7 @@ const Profile = () => {
           <b className="ms-4">51.1M</b> Followers
           {
             profile.role === 'ADMIN' &&
-            <a href="/#/admin"
+            <a href="/#/admin/users"
                className="mt-3 btn btn-lg btn-warning rounded-pill w-100 fw-bold text-white">
               Admin Page</a>
           }
