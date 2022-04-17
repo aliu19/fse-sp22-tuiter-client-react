@@ -15,12 +15,13 @@ const SearchTuits = () => {
     const [searchResults, setSearchResults] = useState([]);
 
     const searchTuits = () => {
-        if (searchTuit === '') {
-            alert('Please type a tuit before search!')
-            return;
-        }
+        // if (searchTuit === '') {
+        //     alert('Please type a tuit before search!')
+        //     return;
+        // }
         searchByTuit(searchTuit)
             .then((tuits) => {
+                console.log(tuits)
                 setSearchResults(tuits);
             })
     }
@@ -39,6 +40,7 @@ const SearchTuits = () => {
                 </div>
                 <div className="col-3">
                     <button
+                        data-testid='search-button'
                         onClick={searchTuits}
                         className="btn btn-primary btn-block">
                         Search
