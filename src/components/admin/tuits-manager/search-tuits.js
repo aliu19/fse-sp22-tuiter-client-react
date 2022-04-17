@@ -15,13 +15,12 @@ const SearchTuits = () => {
     const [searchResults, setSearchResults] = useState([]);
 
     const searchTuits = () => {
-        // if (searchTuit === '') {
-        //     alert('Please type a tuit before search!')
-        //     return;
-        // }
+        if (searchTuit === '') {
+            alert('Please type a tuit before search!')
+            return;
+        }
         searchByTuit(searchTuit)
             .then((tuits) => {
-                console.log(tuits)
                 setSearchResults(tuits);
             })
     }
