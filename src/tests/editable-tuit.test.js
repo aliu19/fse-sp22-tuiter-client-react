@@ -1,8 +1,14 @@
+/**
+ * @file Implements tests for editable tuit component
+ */
 import React from "react";
 import EditableTuit from "../components/admin/tuits-manager/editable-tuit";
 import {HashRouter} from "react-router-dom";
-import {act, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 
+/**
+ * Mock a tuit
+ */
 const MOCKED_TUIT = {
     tuit: "Sample Tuit",
     postedBy: {
@@ -16,6 +22,10 @@ const MOCKED_TUIT = {
     _id: "12"
 }
 
+/**
+ * This test makes sure that EditableTuit can render correct tuit data
+ * with edit-button
+ */
 test("render tuit content mocked and edit button", ()=> {
     render(
         <HashRouter>

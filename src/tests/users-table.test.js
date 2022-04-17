@@ -1,3 +1,6 @@
+/**
+ * @file Implements tests for Users table componenet
+ */
 import UsersTable from "../components/admin/users-manager/users-table";
 import {screen, render} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
@@ -5,12 +8,18 @@ import {createUser, deleteUsersByUsername, findAllUsers} from "../services/users
 import axios from "axios";
 import {UserList} from "../components/profile/user-list";
 
+/**
+ * Mocked user list
+ */
 const MOCKED_USERS = [
     {username: 'ellen_ripley', password: 'lv426', email: 'repley@weyland.com', _id: "123"},
     {username: 'sarah_conor', password: 'illbeback', email: 'sarah@bigjeff.com', _id: "234"},
     {username: 'dd', password: 'dd123', email: 'dd@123', _id: "345"}
 ]
 
+/**
+ * This test makes sure that User table renders correct static user array
+ */
 test("User table renders static user array", () => {
     render(
         <HashRouter>
@@ -23,6 +32,10 @@ test("User table renders static user array", () => {
     })
 })
 
+/**
+ * This test makes sure that User table renders
+ * user array returned from calling async API
+ */
 describe('user table renders async', () => {
     // sample user to insert
     const ripley = {
@@ -52,6 +65,9 @@ describe('user table renders async', () => {
     })
 })
 
+/**
+ * This test makes sure that User table renders user array mocked
+ */
 test("User table renders mocked", async () => {
     const mock = jest.spyOn(axios, 'get')
     mock.mockImplementation(() => Promise.resolve({data: {users: MOCKED_USERS}}))

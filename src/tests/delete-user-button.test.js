@@ -1,14 +1,23 @@
+/**
+ * @file Implements tests for delete user button
+ */
 import React from "react";
 import {act, create} from "react-test-renderer";
 import UsersTable from "../components/admin/users-manager/users-table";
 import {HashRouter} from "react-router-dom";
 
+/**
+ * Mocked User list
+ */
 const MOCKED_USERS = [
     {username: 'ellen_ripley', password: 'lv426', email: 'repley@weyland.com', _id: "123"},
     {username: 'sarah_conor', password: 'illbeback', email: 'sarah@bigjeff.com', _id: "234"},
     {username: 'dd', password: 'dd123', email: 'dd@123', _id: "345"}
 ]
 
+/**
+ * This test makes sure that UsersTable can render current users and delete-buttons
+ */
 describe('render delete-button with static users', () => {
     let users = MOCKED_USERS;
 
@@ -31,6 +40,9 @@ describe('render delete-button with static users', () => {
     })
 })
 
+/**
+ * This test makes sure click delete-button can remove the user from the users table
+ */
 test('click delete-button to delete user from the users table', () => {
     let users = MOCKED_USERS;
 

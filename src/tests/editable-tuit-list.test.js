@@ -1,9 +1,15 @@
+/**
+ * @file Implements tests for editable tuit list component
+ */
 import EditableTuits from "../components/admin/tuits-manager/editable-tuits";
 import {screen, render} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
 import {api, createTuitByUser, deleteTuitByContent, findAllTuits} from "../services/tuits-service";
 import {createUser, deleteUsersByUsername} from "../services/users-service";
 
+/**
+ * Mocked tuit list
+ */
 const MOCKED_TUITS = [
     {
         tuit: "alice's tuit",
@@ -37,6 +43,10 @@ const MOCKED_TUITS = [
     }
 ];
 
+/**
+ * This test makes sure that editable tuit list renders correct
+ * static tuits along with edit-button for each tuit
+ */
 test('editable tuit list renders static tuit array'
      + 'with edit buttons for each tuit', () => {
     render(
@@ -57,6 +67,11 @@ test('editable tuit list renders static tuit array'
     expect(editButtons.length).toBe(3);
 });
 
+/**
+ * This test makes sure that editable tuit list renders correct
+ * tuits returned from calling async API
+ * along with edit-button for each tuit
+ */
 describe('editable tuit list renders async'
          + 'with edit-button', ()=> {
     // samples tuits we'll insert to then retrieve
@@ -124,6 +139,10 @@ describe('editable tuit list renders async'
     })
 })
 
+/**
+ * This test makes sure that editable tuit list renders correct
+ * tuits mocked along with edit-button for each tuit
+ */
 test('editable tuit list renders mocked', async () => {
     const mock = jest.spyOn(api, 'get');
     mock.mockImplementation(() =>
