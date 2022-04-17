@@ -21,7 +21,6 @@ const SearchTuits = () => {
         }
         searchByTuit(searchTuit)
             .then((tuits) => {
-                console.log(tuits)
                 setSearchResults(tuits);
             })
     }
