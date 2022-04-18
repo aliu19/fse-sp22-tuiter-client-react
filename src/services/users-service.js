@@ -7,6 +7,9 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const LOGIN_API = `${BASE_URL}/api/login`;
 const USERS_API = `${BASE_URL}/api/users`;
+const ADMIN_API = `${BASE_URL}/api/admin`
+
+export const api = axios.create({withCredentials: true});
 
 /**
  * POST method to create a new user
@@ -20,7 +23,7 @@ export const createUser = (user) =>
 
 /**
  * GET method for getting all users
- * @returns {Promise<AxiosResponse<any>>} JSON array cotains all users
+ * @returns {Promise<AxiosResponse<any>>} JSON array contains all users
  */
 export const findAllUsers = () =>
     axios.get(USERS_API)
@@ -41,8 +44,8 @@ export const findUserById = (uid) =>
  * @returns {Promise<AxiosResponse<any>>} status on whether user is removed
  */
 export const deleteUser = (uid) =>
-  axios.delete(`${USERS_API}/${uid}`)
-    .then(response => response.data);
+    api.delete(`${USERS_API}/${uid}`)
+        .then(response => response.data);
 
 /**
  * DELETE method for deleting a particular user by their name (For testing)
@@ -50,8 +53,8 @@ export const deleteUser = (uid) =>
  * @returns {Promise<AxiosResponse<any>>} status on whether user is removed
  */
 export const deleteUsersByUsername = (username) =>
-  axios.get(`${USERS_API}/username/${username}/delete`)
-    .then(response => response.data);
+    axios.get(`${USERS_API}/username/${username}/delete`)
+        .then(response => response.data);
 
 /**
  * POST method for retrieving a user by credentials
@@ -59,8 +62,8 @@ export const deleteUsersByUsername = (username) =>
  * @returns {Promise<AxiosResponse<any>>} JSON object contains the user or the error status
  */
 export const findUserByCredentials = (credentials) =>
-  axios.post(`${LOGIN_API}`, credentials)
-    .then(response => response.data);
+    axios.post(`${LOGIN_API}`, credentials)
+        .then(response => response.data);
 
 /**
  * PUT method for updating a user by their id
@@ -70,11 +73,40 @@ export const findUserByCredentials = (credentials) =>
  */
 export const updateUser = (uid, user) =>
     axios.put(`${USERS_API}/${uid}`, user)
-      .then(response => response.data);
+        .then(response => response.data);
+
+/**
+ * POST method to create a new user by Admin
+ * @param user A new user object with all required attributes
+ * @returns {Promise<AxiosResponse<any>>} JSON contains the new User that was
+ * inserted into the database or error status
+ */
+export const adminCreateUser = (user) =>
+    axios.post(`${ADMIN_API}`, user)
+        .then(response => response.data)
+
+/**
+ * DELETE method for deleting a particular user by Admin using user's primary key
+ * @param uid User's primary key
+ * @returns {Promise<AxiosResponse<any>>} status on whether user is removed
+ */
+export const adminDeleteUser = (uid) =>
+    axios.delete(`${ADMIN_API}/${uid}`)
+        .then(response => response.data)
+
+/**
+ * GET method for finding users that possibly matched username for admin
+ * @param username Users' username
+ * @returns {Promise<AxiosResponse<any>>} JSON array contains all users that possibly matched
+ *     username
+ */
+export const searchByUsername = (username) =>
+    axios.get(`${ADMIN_API}/${username}`)
+        .then(response => response.data)
 
 const service = {
-  findAllUsers,
-  updateUser
+    findAllUsers,
+    updateUser
 }
 
 export default service;

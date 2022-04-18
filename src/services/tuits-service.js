@@ -7,6 +7,7 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const TUITS_API = `${BASE_URL}/api/tuits`;
 const USERS_API = `${BASE_URL}/api/users`;
+const ADMIN_API = `${BASE_URL}/api/admin`;
 
 export const api = axios.create({
     withCredentials: true
@@ -76,4 +77,14 @@ export const deleteTuit = (tid) =>
  */
 export const deleteTuitByContent = (content) =>
     api.delete(`${TUITS_API}/byContent/${content}`)
+        .then(response => response.data)
+
+/**
+ * GET method for searching tuits by content for admins
+ * @param tuit tuit's content
+ * @returns {Promise<AxiosResponse<any>>} Body formatted as JSON array containing all the tuits
+ * that matches the content.
+ */
+export const searchByTuit = (tuit) =>
+    api.get(`${ADMIN_API}/${tuit}/tuits`)
         .then(response => response.data)

@@ -39,8 +39,16 @@ export const profile = () =>
 
 /**
  * POST method for logout
- * @returns {Promise<AxiosResponse<any>>} Status
+ * @returns {Promise<AxiosResponse<any>>} Status on whether user is logged out
  */
 export const logout = () =>
     api.post(`${AUTH_API}/logout`)
+        .then(response => response.data)
+
+/**
+ * DELETE method for deleting current account
+ * @returns{Promise<AxiosResponse<any>>} Status on whether user is deleted
+ */
+export const deleteUser = () =>
+    api.delete(`${AUTH_API}/delete`)
         .then(response => response.data)
