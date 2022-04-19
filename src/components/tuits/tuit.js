@@ -5,7 +5,7 @@ import TuitStats from "./tuit-stats";
 import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 import {Link} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 
 const Tuit = ({tuit, deleteTuit, updateTuit, likeTuit, dislikeTuit}) => {
@@ -65,9 +65,9 @@ const Tuit = ({tuit, deleteTuit, updateTuit, likeTuit, dislikeTuit}) => {
                     <div className='up-del-buttons'>
                         <i onClick={() => {
                             setEditing(false)
-                            updateTuit(tuit)
+                            updateTuit(tuitCache) 
                         }}
-                           className="float-end fa fa-check"/>
+                        className="float-end fa fa-check"/>
                     </div>
                 }
                 <h2
@@ -76,7 +76,7 @@ const Tuit = ({tuit, deleteTuit, updateTuit, likeTuit, dislikeTuit}) => {
                     @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> </h2>
                 {
                     !editing &&
-                    tuit.tuit
+                    tuitCache.tuit
                 }
                 {
                     editing &&

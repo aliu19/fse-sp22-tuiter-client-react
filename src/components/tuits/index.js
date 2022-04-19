@@ -63,6 +63,15 @@ const Tuits = ({tuits = [], refreshTuits}) => {
 
     const updateTuit = (newTuit) => {
       console.log('update tuit', newTuit)
+      // const newTodos = await service.updateTodo(
+      //   updatedTodo._id,
+      //   updatedTodo
+      // )
+
+      tuitService.updateTuit(newTuit._id,newTuit)
+   
+      //setTodos(newTodos);
+
     }
 
     return (

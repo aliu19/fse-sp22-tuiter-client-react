@@ -57,7 +57,7 @@ export const createTuitByUser = (uid, tuit) =>
  * @returns {Promise<AxiosResponse<any>>} Body formatted as JSON the tuit inserted in the database
  */
 export const updateTuit = (tid, tuit) =>
-    api.post(`${TUITS_API}/${tid}`, tuit)
+    api.put(`${TUITS_API}/${tid}`, tuit)
         .then(response => response.data);
 
 /**
