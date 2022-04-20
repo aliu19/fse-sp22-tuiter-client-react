@@ -50,11 +50,13 @@ const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
                 <Link to={`/tuit/${tuit._id}`}>
                     <i className="float-end tuit-button fas fa-circle-ellipsis me-1"/>
                 </Link>
-                <h2
-                    className="fs-5">
-                    {tuit.postedBy && tuit.postedBy.username}
-                    @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> </h2>
-                {tuit.tuit}
+                <div>
+                <Link
+                    className="fs-5"
+                    to={`/profile/${tuit.postedBy._id}`}>
+                    {tuit.postedBy && tuit.postedBy.username}</Link>
+                    @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> 
+                </div>                 {tuit.tuit}
                 {
                     tuit.youtube &&
                     <TuitVideo tuit={tuit}/>
