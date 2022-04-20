@@ -1,14 +1,17 @@
 import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+
 import * as service from "../../services/tuits-service";
 import Tuits from "../tuits"
 
 const OtherUserTuits = () => {
-    const {uid} = useParams();
+    const {ouid} = useParams();
     const [tuits, setTuits] = useState([]);
     const findTuitByUser = () =>
-    tuitsService.findTuitByUser(uid)
+    service.findTuitByUser(ouid)
             .then(tuits => {
                 console.log('tuits', tuits)
+                console.log('ouid', ouid)
                 setTuits(tuits)
             })
 

@@ -10,6 +10,7 @@
  import * as tuitsService from "../../services/tuits-service";
  import MyLikes from "./my-likes";
  import MyDislikes from "./my-dislikes";
+ import OtherUserTuits from "./other-user-tuits"
 
  const OtherUserProfile = () => {
     const [otherUser, setOtherUser] = useState([]);
@@ -95,7 +96,7 @@
            <b className="ms-4">51.1M</b> Followers
            <ul className="mt-4 nav nav-pills nav-fill">
             <li className="nav-item">
-                <Link className="nav-link active" to={`/profile/tuits`}>Tuits</Link>
+                <Link className="nav-link active" to={`/profile/${otherUser._id}/tuits`}>Tuits</Link>
             </li>
             <li className="nav-item">
                 <a className="nav-link" href="#">Tuits & replies</a>
@@ -112,6 +113,9 @@
             </ul>
          </div>
        </div>
+       <Routes>
+        <Route path="/tuits" element={<OtherUserTuits/>}/>
+      </Routes>
      </div>
    );
  }
