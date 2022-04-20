@@ -12,20 +12,20 @@
  import MyDislikes from "./my-dislikes";
 
  const OtherUserProfile = () => {
-    const [user, setUser] = useState([]);
-    const [tuits, setTuits] = useState([]);
-    const {uid} = useParams();
+    const [otherUser, setOtherUser] = useState([]);
+    const [otherTuits, setOtherTuits] = useState([]);
+    const {ouid} = useParams();
     const findUserById = () =>
-    usersService.findUserById(uid)
-            .then(user => {
-                console.log('user', user)
-                setUser(user)
+    usersService.findUserById(ouid)
+            .then(otherUser => {
+                console.log('otherUser', otherUser._id)
+                setOtherUser(otherUser)
             });
     const findTuitByUser = () =>
-    tuitsService.findTuitByUser(uid)
-            .then(tuits => {
-                console.log('tuits', tuits)
-                setTuits(tuits)
+    tuitsService.findTuitByUser(ouid)
+            .then(otherTuits => {
+                console.log('tuits', otherTuits)
+                setOtherTuits(otherTuits)
             })
 //    const navigate = useNavigate();
 //    const location = useLocation();
@@ -58,7 +58,7 @@
      <div className="ttr-other-user-profile">
        <div className="border border-bottom-0">
          <h4 className="p-2 mb-0 pb-0 fw-bolder">
-           {user.username}
+           {otherUser.username}
            <i className="fa fa-badge-check text-primary"/>
          </h4>
          <span className="ps-2">67.6K Tuits</span>
@@ -74,9 +74,9 @@
 
          <div className="p-2">
            <h4 className="fw-bolder pb-0 mb-0">
-             {user.username}<i className="fa fa-badge-check text-primary"/>
+             {otherUser.username}<i className="fa fa-badge-check text-primary"/>
            </h4>
-           <h6 className="pt-0">@{user.username}</h6>
+           <h6 className="pt-0">@{otherUser.username}</h6>
            <p className="pt-2">
              There's space for everybody. Sparkles
            </p>
@@ -93,7 +93,23 @@
            </p>
            <b>178</b> Following
            <b className="ms-4">51.1M</b> Followers
-           
+           <ul className="mt-4 nav nav-pills nav-fill">
+            <li className="nav-item">
+                <Link className="nav-link active" to={`/profile/tuits`}>Tuits</Link>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link" href="#">Tuits & replies</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link" href="#">Media</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link" href="#">Likes</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link" href="#">Dislikes</a>
+            </li>
+            </ul>
          </div>
        </div>
      </div>
