@@ -16,6 +16,11 @@ const AllTuits = () => {
             .catch(e => alert("Try again later!"))
     }
 
+    const updateTuit = (newTuit) => {
+        console.log('update tuit', newTuit)
+        tuitsService.updateTuit(newTuit._id,newTuit)
+      }
+
     useEffect(async () => {
         let fetchTuits = await tuitsService.findAllTuits()
         setAllTuits(fetchTuits);
@@ -27,6 +32,7 @@ const AllTuits = () => {
             <h2>All Tuits</h2>
             <EditableTuits 
             deleteTuit={deleteTuit}
+            updateTuit={updateTuit}
             allTuits={allTuits}/>
         </div>
     )
