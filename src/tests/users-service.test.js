@@ -2,7 +2,7 @@ import {
   createUser,
   deleteUsersByUsername,
   findAllUsers,
-  findUserById, updateUser
+  findUserById, searchByUsername, updateUser
 } from "../services/users-service";
 
 describe('createUser', () => {
@@ -195,5 +195,91 @@ describe('user can update their information', () => {
     const status = await updateUser(user._id, newSowell);
 
     expect(status.modifiedCount).toBeGreaterThanOrEqual(1);
+  });
+})
+
+describe('user can search by username', () => {
+  // sample user
+  const andrew = {
+    username: 'andrew',
+    password: 'andrew',
+    email: 'andrew@solutions.com'
+  };
+
+  const andy = {
+    username: 'andy',
+    password: 'uncompromise',
+    email: 'uncompromise@solutions.com'
+  }
+
+  const sowell = {
+    username: 'thommas_sowell',
+    password: 'compromise',
+    email: 'compromise@solutions.com'
+  };
+
+  let user;
+
+  // set up the tests before verification
+  beforeAll(async () => {
+    await createUser(andrew);
+    await createUser(andy);
+    return await createUser(sowell);
+  });
+
+  // clean up after test runs
+  afterAll(async () => {
+    // remove any data we created
+    await deleteUsersByUsername(andrew.username);
+    await deleteUsersByUsername(andy.username);
+    return deleteUsersByUsername(sowell.username);
+  })
+
+  test('user can search by username', async () => {
+    const users = await searchByUsername('and');
+
+    expect(users.length).toEqual(2);
+  });
+})
+
+describe('user can search by username', () => {
+  // sample user
+  const andrew = {
+    username: 'andrew',
+    password: 'andrew',
+    email: 'andrew@solutions.com'
+  };
+
+  const andy = {
+    username: 'andy',
+    password: 'uncompromise',
+    email: 'uncompromise@solutions.com'
+  }
+
+  const sowell = {
+    username: 'thommas_sowell',
+    password: 'compromise',
+    email: 'compromise@solutions.com'
+  };
+
+  // set up the tests before verification
+  beforeAll(async () => {
+    await createUser(andrew);
+    await createUser(andy);
+    return await createUser(sowell);
+  });
+
+  // clean up after test runs
+  afterAll(async () => {
+    // remove any data we created
+    await deleteUsersByUsername(andrew.username);
+    await deleteUsersByUsername(andy.username);
+    return deleteUsersByUsername(sowell.username);
+  })
+
+  test('user can search by username', async () => {
+    const users = await searchByUsername('and');
+
+    expect(users.length).toEqual(2);
   });
 })
