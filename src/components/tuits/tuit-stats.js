@@ -47,7 +47,10 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit}) => {
               </span>
             </div>
             <div className="col">
-                <i className="far fa-inbox-out"/>
+                <span className='ttr-bookmark-tuit-click'>
+                      <i className={`fa-regular ${tuit.bookmarkedByMe === true ? "fa-solid" : ""} 
+                      fa-bookmark tuit-button me-1`}/>
+              </span>
             </div>
         </div>
     );
