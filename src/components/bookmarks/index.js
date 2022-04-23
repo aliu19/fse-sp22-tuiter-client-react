@@ -26,7 +26,7 @@ function Bookmarks() {
 
     return (
         <div>
-            <h1>Bookmarks Screen</h1>
+            <h1>My Bookmarks</h1>
             <Tuits tuits={bookmarkedTuits} refreshTuits={findTuitsIBookmark}/>
         </div>
     );
