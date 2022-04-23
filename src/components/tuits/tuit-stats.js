@@ -10,7 +10,7 @@ import React, {useEffect} from "react";
  * @param dislikeTuit callback function for disliking a tuit
  * @param bookmarkTuit callback function for toggling bookmark of a tuit
  */
-const TuitStats = ({tuit, likeTuit, dislikeTuit}) => {
+const TuitStats = ({tuit, likeTuit, dislikeTuit, bookmarkTuit}) => {
     return (
         <div className="row mt-2">
             <div className="col">
@@ -48,7 +48,8 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit}) => {
               </span>
             </div>
             <div className="col">
-                <span className='ttr-bookmark-tuit-click'>
+                <span className='ttr-bookmark-tuit-click'
+                onClick={()=>bookmarkTuit(tuit)}>
                       <i className={`fa-regular ${tuit.bookmarkedByMe === true ? "fa-solid" : ""} 
                       fa-bookmark tuit-button me-1`}/>
               </span>
