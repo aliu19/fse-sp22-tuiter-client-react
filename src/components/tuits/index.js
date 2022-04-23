@@ -61,6 +61,11 @@ const Tuits = ({tuits = [], refreshTuits}) => {
         tuitService.deleteTuit(tid)
             .then(refreshTuits);
 
+    /**
+     * Callback function to fetch API to toggle bookmark of a tuit
+     * when user clicks like button
+     * @param tid Tuit's primary key
+     */
     // const bookmarkTuit = (tid) =>
     //     tuitService.bookmarkTuit(tid)
     //         .then(refreshTuits)

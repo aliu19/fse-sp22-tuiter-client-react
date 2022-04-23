@@ -8,6 +8,7 @@ import React, {useEffect} from "react";
  * @param tuit The tuit
  * @param likeTuit callback function for liking a tuit
  * @param dislikeTuit callback function for disliking a tuit
+ * @param bookmarkTuit callback function for toggling bookmark of a tuit
  */
 const TuitStats = ({tuit, likeTuit, dislikeTuit}) => {
     return (
