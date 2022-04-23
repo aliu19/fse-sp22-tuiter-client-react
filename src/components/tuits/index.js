@@ -12,7 +12,7 @@ import * as dislikeService from "../../services/dislikes-service"
 
 const Tuits = ({tuits = [], refreshTuits}) => {
     const [profile, setProfile] = useState(undefined);
-    useEffect(async ()=> {
+    useEffect(async () => {
         try {
             const user = await authService.profile();
             if (user) {
@@ -61,23 +61,28 @@ const Tuits = ({tuits = [], refreshTuits}) => {
         tuitService.deleteTuit(tid)
             .then(refreshTuits);
 
+    // const bookmarkTuit = (tid) =>
+    //     tuitService.bookmarkTuit(tid)
+    //         .then(refreshTuits)
+
     return (
-    <div>
-      <ul className="ttr-tuits list-group">
-        {
-          tuits.map && tuits.map(tuit => {
-            return (
-              <Tuit key={tuit._id}
-                    deleteTuit={deleteTuit}
-                    likeTuit={likeTuit}
-                    dislikeTuit={dislikeTuit}
-                    tuit={tuit}/>
-            );
-          })
-        }
-      </ul>
-    </div>
-  );
+        <div>
+            <ul className="ttr-tuits list-group">
+                {
+                    tuits.map && tuits.map(tuit => {
+                                  return (
+                                      <Tuit key={tuit._id}
+                                            deleteTuit={deleteTuit}
+                                            likeTuit={likeTuit}
+                                            dislikeTuit={dislikeTuit}
+                                            // bookmarkTuit={bookmarkTuit}
+                                            tuit={tuit}/>
+                                  );
+                              })
+                }
+            </ul>
+        </div>
+    );
 }
 
 export default Tuits;
