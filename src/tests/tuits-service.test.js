@@ -2,11 +2,13 @@ import {
     createTuitByUser,
     deleteTuitByContent,
     findTuitById,
-    findAllTuits
+    findAllTuits,
+    searchByTuit
 } from "../services/tuits-service"
 
-import {createUser,
-    deleteUsersByUsername
+import {
+    createUser,
+    deleteUsersByUsername, searchByUsername
 } from "../services/users-service";
 
 describe('can create tuit with REST API', () => {
@@ -206,3 +208,45 @@ describe('can retrieve all tuits with REST API', () => {
         })
     })
 });
+
+describe('can search tuit by tuit', () => {
+    // sample user
+    const andrew = {
+        username: 'andrew',
+        password: 'andrew',
+        email: 'andrew@solutions.com'
+    };
+
+    const tuits = [
+        "tuit 1 search!", "search! tuit 2", "tuit 3", "research! 4", "tuit5 sarch"
+        ]
+
+    // set up the tests before verification
+    beforeAll(async () => {
+        await deleteUsersByUsername(andrew.username)
+        let promises = [];
+        tuits.map((tuit) => promises.push(deleteTuitByContent(tuit)))
+        return Promise.all(promises);
+    });
+
+    // clean up after test runs
+    afterAll(async () => {
+        // remove any data we created
+        await deleteUsersByUsername(andrew.username);
+        let promises = [];
+        tuits.map((tuit) => promises.push(deleteTuitByContent(tuit)));
+        return Promise.all(promises)
+    })
+
+    test('can search tuit by tuit', async () => {
+        const user = await createUser(andrew);
+        tuits.map(content => {
+            createTuitByUser(user._id, {tuit: content, postedOn: "2022-03-09T00:00:00.000Z"});
+        })
+
+        const searchedTuits = await searchByTuit('search!');
+        console.log(searchedTuits)
+
+        expect(searchedTuits.length).toEqual(3);
+    });
+})
