@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const EditableTuit = ({tuit, deleteTuit, updateTuit}) => {
+const EditableTuit = ({tuit, deleteTuit}) => {
     const [tuitCache, setTuitCache] = useState(tuit);
     const [editing, setEditing] = useState(false);
     const daysOld = (tuit) => {
@@ -39,27 +39,6 @@ const EditableTuit = ({tuit, deleteTuit, updateTuit}) => {
                 }
             </div>
             <div className="w-100">
-                {
-                    !editing &&
-                    <i className='float-end fa fa-cog edit-button'
-                       onClick={() => {
-                           setEditing(true)
-                       }}/>
-                }
-                {
-                    editing &&
-                    <div className='up-del-buttons'>
-                        <i onClick={() => {
-                            setEditing(false)
-                            updateTuit(tuitCache)
-                        }}
-                           className="float-end fa fa-check"/>
-                        {/* <i
-                            onClick={() => {
-                            }}
-                            className="float-end fa fa-trash mr-1"/> */}
-                    </div>
-                }
                 <i onClick={()=> deleteTuit(tuit._id)}
                 className='float-end fa fa-trash mr-1'/>
                 <h2
