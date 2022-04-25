@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
 import * as service from "../../services/tuits-service";
-import Tuits from "../tuits"
+import OtherTuits from "../tuits/other-tuits"
 
 const OtherUserTuits = () => {
     const {ouid} = useParams();
@@ -20,7 +20,7 @@ const OtherUserTuits = () => {
     }, []);
 
     return (
-        <Tuits tuits={tuits} refreshTuits={findTuitByUser}/>
+        <OtherTuits userTuits={tuits}/>
     )
 }
 
