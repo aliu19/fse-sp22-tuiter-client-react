@@ -9,6 +9,7 @@ import * as likeService from "../../services/likes-service";
 import * as tuitService from '../../services/tuits-service';
 import * as authService from "../../services/auth-service";
 import * as dislikeService from "../../services/dislikes-service"
+import * as bookmarkService from "../../services/bookmarks-service"
 
 const Tuits = ({tuits = [], refreshTuits}) => {
     const [profile, setProfile] = useState(undefined);
@@ -66,9 +67,16 @@ const Tuits = ({tuits = [], refreshTuits}) => {
      * when user clicks like button
      * @param tid Tuit's primary key
      */
-    // const bookmarkTuit = (tid) =>
-    //     tuitService.bookmarkTuit(tid)
-    //         .then(refreshTuits)
+    const bookmarkTuit = (tuit) => {
+        if (profile !== undefined) {
+            bookmarkService.userTogglesTuitBookmarks("me", tuit._id)
+                .then(refreshTuits)
+                .catch(e => alert(e));
+        } else {
+            alert("Please log in!")
+        }
+    }
+
 
     return (
         <div>
@@ -80,7 +88,7 @@ const Tuits = ({tuits = [], refreshTuits}) => {
                                             deleteTuit={deleteTuit}
                                             likeTuit={likeTuit}
                                             dislikeTuit={dislikeTuit}
-                                            // bookmarkTuit={bookmarkTuit}
+                                            bookmarkTuit={bookmarkTuit}
                                             tuit={tuit}/>
                                   );
                               })
