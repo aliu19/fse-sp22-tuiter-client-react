@@ -22,12 +22,12 @@
                 console.log('otherUser', otherUser._id)
                 setOtherUser(otherUser)
             });
-    const findTuitByUser = () =>
-    tuitsService.findTuitByUser(ouid)
-            .then(otherTuits => {
-                console.log('tuits', otherTuits)
-                setOtherTuits(otherTuits)
-            })
+    // const findTuitByUser = () =>
+    // tuitsService.findTuitByUser(ouid)
+    //         .then(otherTuits => {
+    //             console.log('tuits', otherTuits)
+    //             setOtherTuits(otherTuits)
+    //         })
 //    const navigate = useNavigate();
 //    const location = useLocation();
 //    const [profile, setProfile] = useState({});
@@ -35,7 +35,7 @@
    useEffect(() => {
     console.log('location', window.location.pathname.indexOf('625712d9be600276088d9d30'))
        findUserById();
-       findTuitByUser();
+    //    findTuitByUser();
     }, []);
 
    /**
@@ -96,7 +96,7 @@
            <b className="ms-4">51.1M</b> Followers
            <ul className="mt-4 nav nav-pills nav-fill">
             <li className="nav-item">
-                <Link className="nav-link active" to={`/profile/${otherUser._id}/tuits`}>Tuits</Link>
+                <Link className="nav-link active" to={`/other-profile/${otherUser._id}/tuits`}>Tuits</Link>
             </li>
             <li className="nav-item">
                 <a className="nav-link" href="#">Tuits & replies</a>
