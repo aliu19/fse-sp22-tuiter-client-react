@@ -1,8 +1,17 @@
+/**
+ * @file Implements Users Table that displays all users in the table and enables
+ * admins to edit each users' profile and delete users' account
+ */
 import React, {useEffect, useState} from "react";
 import * as usersService from "../../../services/users-service";
 import UsersTable from "./users-table";
 import * as authService from "../../../services/auth-service";
 
+/**
+ * Implement Users table that displays all users and enables admins to manage users' accounts.
+ * It will fetch all users in the database and utilize the users-table component
+ * to displays all given users in the table.
+ */
 const UsersTableManager = () => {
     const [allUsers, setAllUsers] = useState([]);
     const [newUser, setNewUser] = useState({role: 'GENERAL'});

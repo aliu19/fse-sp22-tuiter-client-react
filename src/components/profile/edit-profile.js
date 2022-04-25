@@ -60,7 +60,7 @@ const EditProfile = () => {
      * clicks "delete" button
      */
     const handleDeleteAccount = () => {
-        userService.deleteUser(profileInfo._id)
+        authService.deleteUser()
             .then(()=> {
                 alert("Successfully delete your account!")
                 navigate("/")

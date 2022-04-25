@@ -21,6 +21,12 @@ export const userTogglesTuitLikes = (uid, tid) =>
     api.put(`${USERS_API}/${uid}/likes/${tid}`)
         .then(response => response.data);
 
+/**
+ * GET method for fetching all tuits liked by user
+ * @param uid User's primary key
+ * @returns {Promise<AxiosResponse<any>>} Body formatted as JSON array containing all the tuits
+ * that are liked by user.
+ */
 export const findAllTuitsLikedByUser = (uid) =>
     api.get(`${USERS_API}/${uid}/likes`)
         .then(response => response.data)

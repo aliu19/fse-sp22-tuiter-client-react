@@ -1,12 +1,28 @@
+/**
+ * @file Implements search tuits component that enables admins to search tuits by their contents,
+ * and displays search results. Admins can further edit/delete the tuits.
+ */
 import React, {useState} from "react";
 import EditableTuits from "./editable-tuits";
+import {searchByTuit} from "../../../services/tuits-service";
 
+/**
+ * Implements search tuits component that enables admins to search tuits by their contents
+ * and displays search results using editable tuits list.
+ */
 const SearchTuits = () => {
     const [searchTuit, setSearchTuit] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
     const searchTuits = () => {
-
+        if (searchTuit === '') {
+            alert('Please type a tuit before search!')
+            return;
+        }
+        searchByTuit(searchTuit)
+            .then((tuits) => {
+                setSearchResults(tuits);
+            })
     }
 
     return (
@@ -23,6 +39,8 @@ const SearchTuits = () => {
                 </div>
                 <div className="col-3">
                     <button
+                        data-testid='search-button'
+                        onClick={searchTuits}
                         className="btn btn-primary btn-block">
                         Search
                     </button>
@@ -37,7 +55,7 @@ const SearchTuits = () => {
             {
                 searchResults.length > 0
                 &&
-                <EditableTuits tuits={searchResults}/>
+                <EditableTuits allTuits={searchResults}/>
             }
         </div>
     )

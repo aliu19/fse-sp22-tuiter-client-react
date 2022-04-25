@@ -1,9 +1,17 @@
+/**
+ * @file Implements a reusable users table components that displays all users
+ * and enables admins to delete users' account.
+ */
 import React, {useEffect, useState} from "react";
-import * as usersService from "../../../services/users-service";
 import {Table} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import "../admin.css"
 
+/**
+ * Implements the users table component that takes an array of users and displays them.
+ * @param users JSON array that contains all users.
+ * @param deleteUser callback function to delete a certain user.
+ */
 const UsersTable = ({users, deleteUser}) => {
     const [allUsers, setAllUsers] = useState(users);
 
@@ -21,7 +29,7 @@ const UsersTable = ({users, deleteUser}) => {
                 {
                     allUsers.map(user =>
                                      <tr key={user._id}>
-                                         <td>
+                                         <td className='username-field'>
                                              <Link to={`/admin/profile/${user._id}`}>
                                                  <h5>{user.username}</h5>
                                              </Link>

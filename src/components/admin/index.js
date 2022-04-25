@@ -1,15 +1,27 @@
+/**
+ * @file Implements Admin home page component
+ * Admins have the following options to manage the Tuiter:
+ * Users table: Displays all users in the system, and admins can manage each user's profile.
+ * Tuits list: Displays all tuits in the system, and admins can edit/delete tuits.
+ * Search users: Allows admins to search users by username.
+ * Search tuits: Allows admins to search tuits by contents.
+ */
 import React, {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
-import UsersTable from "./users-manager/users-table";
 import SearchTuits from "./tuits-manager/search-tuits";
 import SearchUsers from "./users-manager/search-users";
 import AllTuits from "./tuits-manager/all-tuits";
 import UsersTableManager from "./users-manager/users-table-manager";
 
+/**
+ * Implements Admin home page component that has the following options for admins:
+ * Users table, tuits list, search users, search tuits.
+ */
 const Admin = () => {
-    const [key, setKey] = useState('users');
+    const {currentPage} = useParams()
+    const [key, setKey] = useState(currentPage);
     const [admin, setAdmin] = useState({});
     const navigate = useNavigate();
     useEffect(() => {
@@ -34,7 +46,9 @@ const Admin = () => {
                 <Link to="/profile"><i className="fas fa-arrow-circle-left"/> Back to Profile</Link>
                 <h2> Admin</h2>
             </div>
-            <Tab.Container id="left-tabs-example" defaultActiveKey="users">
+            <Tab.Container
+                id="left-tabs-example"
+                activeKey={key}>
                 <Row>
                     <Col sm={3}>
                         <Nav variant="pills" className="flex-column"
