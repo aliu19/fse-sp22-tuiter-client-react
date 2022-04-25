@@ -96,6 +96,6 @@ export const searchByTuit = (tuit) =>
  * @returns {Promise<AxiosResponse<any>>} Status on whether bookmark is created or deleted
  * successfully or not
  */
-export const bookmarkedByMe = (uid, tid) =>
+export const userTogglesTuitBookmarks = (uid, tid) =>
     api.put(`${USERS_API}/${uid}/bookmarks/${tid}`)
         .then(response => response.data)
