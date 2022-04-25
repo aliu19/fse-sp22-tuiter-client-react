@@ -88,14 +88,3 @@ export const deleteTuitByContent = (content) =>
 export const searchByTuit = (tuit) =>
     api.get(`${ADMIN_API}/${tuit}/tuits`)
         .then(response => response.data)
-
-/**
- * PUT method for un/bookmarking a tuit
- * @param uid User's primary key
- * @param tid Tuit's primary key
- * @returns {Promise<AxiosResponse<any>>} Status on whether bookmark is created or deleted
- * successfully or not
- */
-export const userTogglesTuitBookmarks = (uid, tid) =>
-    api.put(`${USERS_API}/${uid}/bookmarks/${tid}`)
-        .then(response => response.data)
