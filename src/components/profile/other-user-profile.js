@@ -8,8 +8,8 @@
  import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
  import * as usersService from "../../services/users-service";
  import * as tuitsService from "../../services/tuits-service";
- import MyLikes from "./my-likes";
- import MyDislikes from "./my-dislikes";
+ import OtherLikes from "./other-likes";
+ import OtherDislikes from "./other-dislikes";
  import OtherUserTuits from "./other-user-tuits"
 
  const OtherUserProfile = () => {
@@ -22,15 +22,6 @@
                 console.log('otherUser', otherUser._id)
                 setOtherUser(otherUser)
             });
-    // const findTuitByUser = () =>
-    // tuitsService.findTuitByUser(ouid)
-    //         .then(otherTuits => {
-    //             console.log('tuits', otherTuits)
-    //             setOtherTuits(otherTuits)
-    //         })
-//    const navigate = useNavigate();
-//    const location = useLocation();
-//    const [profile, setProfile] = useState({});
 
    useEffect(() => {
     console.log('location', window.location.pathname.indexOf('625712d9be600276088d9d30'))
@@ -96,25 +87,38 @@
            <b className="ms-4">51.1M</b> Followers
            <ul className="mt-4 nav nav-pills nav-fill">
             <li className="nav-item">
-                <Link className="nav-link active" to={`/other-profile/${otherUser._id}/tuits`}>Tuits</Link>
+                <Link className={`nav-link ${window.location.pathname.indexOf('tuits') >= 0 ? 'active':''}`}
+                      to={`/other-profile/${otherUser._id}/tuits`}>Tuits</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Tuits & replies</a>
+              <Link to="/other-profile/tuits-and-replies"
+                    className={`nav-link ${window.location.pathname.indexOf('tuits-and-replies') >= 0 ? 'active':''}`}>
+                Tuits & replies</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Media</a>
+              <Link to="/other-profile/media"
+                    className={`nav-link ${window.location.pathname.indexOf('media') >= 0 ? 'active':''}`}>
+                Media</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Likes</a>
+              <Link to={`/other-profile/${otherUser._id}/likes`}
+                    className={`nav-link ${window.location.pathname.indexOf('likes') >= 0 ? 'active':''}`}>
+                Likes</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Dislikes</a>
+              <Link to={`/other-profile/${otherUser._id}/dislikes`}
+                    className={`nav-link ${window.location.pathname.indexOf('dislikes') >= 0 ? 'active':''}`}>
+                Dislikes
+              </Link>
             </li>
             </ul>
          </div>
        </div>
        <Routes>
         <Route path="/tuits" element={<OtherUserTuits/>}/>
+        <Route path="/likes" element={<OtherLikes/>}/>
+        <Route path="/dislikes" element={<OtherDislikes/>}/>
+ 
       </Routes>
      </div>
    );
