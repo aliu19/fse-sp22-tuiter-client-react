@@ -9,10 +9,11 @@ import * as likeService from "../../services/likes-service";
 import * as tuitService from '../../services/tuits-service';
 import * as authService from "../../services/auth-service";
 import * as dislikeService from "../../services/dislikes-service"
+import * as bookmarkService from "../../services/bookmarks-service"
 
 const Tuits = ({tuits = [], refreshTuits}) => {
     const [profile, setProfile] = useState(undefined);
-    useEffect(async ()=> {
+    useEffect(async () => {
         try {
             const user = await authService.profile();
             if (user) {
@@ -61,23 +62,40 @@ const Tuits = ({tuits = [], refreshTuits}) => {
         tuitService.deleteTuit(tid)
             .then(refreshTuits);
 
-    return (
-    <div>
-      <ul className="ttr-tuits list-group">
-        {
-          tuits.map && tuits.map(tuit => {
-            return (
-              <Tuit key={tuit._id}
-                    deleteTuit={deleteTuit}
-                    likeTuit={likeTuit}
-                    dislikeTuit={dislikeTuit}
-                    tuit={tuit}/>
-            );
-          })
+    /**
+     * Callback function to fetch API to toggle bookmark of a tuit
+     * when user clicks like button
+     * @param tid Tuit's primary key
+     */
+    const bookmarkTuit = (tuit) => {
+        if (profile !== undefined) {
+            bookmarkService.userTogglesTuitBookmarks("me", tuit._id)
+                .then(refreshTuits)
+                .catch(e => alert(e));
+        } else {
+            alert("Please log in!")
         }
-      </ul>
-    </div>
-  );
+    }
+
+
+    return (
+        <div>
+            <ul className="ttr-tuits list-group">
+                {
+                    tuits.map && tuits.map(tuit => {
+                                  return (
+                                      <Tuit key={tuit._id}
+                                            deleteTuit={deleteTuit}
+                                            likeTuit={likeTuit}
+                                            dislikeTuit={dislikeTuit}
+                                            bookmarkTuit={bookmarkTuit}
+                                            tuit={tuit}/>
+                                  );
+                              })
+                }
+            </ul>
+        </div>
+    );
 }
 
 export default Tuits;
