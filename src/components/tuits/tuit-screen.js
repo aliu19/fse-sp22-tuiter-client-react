@@ -8,10 +8,17 @@ const TuitScreen = () => {
     const {tid} = useParams();
     const findTuitById = () =>
         service.findTuitById(tid)
-            .then(tuit => setTuit(tuit));
-    useEffect(findTuitById, []);
+            .then(tuit => {
+                console.log('find-tuit',tuit)
+                setTuit(tuit)
+            });
+    useEffect(() => {
+        findTuitById();
+        console.log('useEffect')
+    }, []);
     return(
         <div>
+            {console.log('tuit-screen',tuit)}
             <Tuit tuit={tuit} likeTuit={() => {}}/>
         </div>
     );
