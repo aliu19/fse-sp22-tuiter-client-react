@@ -15,6 +15,8 @@ const Profile = () => {
   const [profile, setProfile] = useState({});
 
   useEffect(async () => {
+    console.log('location', location.pathname.indexOf('tuits-and-replies'))
+    console.log('location-tuits', location.pathname.indexOf('mytuits'))
     try {
       const user = await service.profile();
       setProfile(user);

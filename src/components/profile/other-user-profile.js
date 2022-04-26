@@ -25,7 +25,8 @@
             });
 
    useEffect(() => {
-    console.log('location', window.location.pathname.indexOf('tuits'))
+    console.log('location', location.pathname.indexOf('tuits-and-replies'))
+    console.log('location-tuits', location.pathname.indexOf('tuits'))
        findUserById();
     //    findTuitByUser();
     }, []);
@@ -79,22 +80,22 @@
            <b className="ms-4">51.1M</b> Followers
            <ul className="mt-4 nav nav-pills nav-fill">
             <li className="nav-item">
-                <Link className={`nav-link ${location.pathname.indexOf('tuits') >= 0 ? 'active':''}`}
-                      to={`/other-profile/${otherUser._id}/tuits`}>Tuits</Link>
+                <Link className={`nav-link ${location.pathname.indexOf('othertuits') >= 0 ? 'active':''}`}
+                      to={`/other-profile/${otherUser._id}/othertuits`}>Tuits</Link>
             </li>
             <li className="nav-item">
-              <Link to="/other-profile/tuits-and-replies"
+              <Link to={`/other-profile/${otherUser._id}/other-tuits-and-replies`}
                     className={`nav-link ${location.pathname.indexOf('tuits-and-replies') >= 0 ? 'active':''}`}>
                 Tuits & replies</Link>
             </li>
             <li className="nav-item">
-              <Link to="/other-profile/media"
+              <Link to={`/other-profile/${otherUser._id}/media`}
                     className={`nav-link ${location.pathname.indexOf('media') >= 0 ? 'active':''}`}>
                 Media</Link>
             </li>
             <li className="nav-item">
-              <Link to={`/other-profile/${otherUser._id}/likes`}
-                    className={`nav-link ${location.pathname.indexOf('likes') >= 0 ? 'active':''}`}>
+              <Link to={`/other-profile/${otherUser._id}/otherlikes`}
+                    className={`nav-link ${location.pathname.indexOf('otherlikes') >= 0 ? 'active':''}`}>
                 Likes</Link>
             </li>
             <li className="nav-item">
@@ -107,8 +108,8 @@
          </div>
        </div>
        <Routes>
-        <Route path="/tuits" element={<OtherUserTuits/>}/>
-        <Route path="/likes" element={<OtherLikes/>}/>
+        <Route path="/othertuits" element={<OtherUserTuits/>}/>
+        <Route path="/otherlikes" element={<OtherLikes/>}/>
         <Route path="/dislikes" element={<OtherDislikes/>}/>
  
       </Routes>
