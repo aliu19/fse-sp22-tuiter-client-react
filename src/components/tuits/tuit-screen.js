@@ -9,21 +9,21 @@ const TuitScreen = () => {
     const findTuitById = () =>
         service.findTuitById(tid)
             .then(tuit => {
-                console.log('find-tuit',tuit)
                 setTuit(tuit)
             });
     useEffect(() => {
         findTuitById();
-        console.log('useEffect')
     }, []);
+
     return(
         <div>
             <div className="mb-3">
             {console.log('tuit-screen',tuit)}
             <Tuit tuit={tuit} likeTuit={() => {}}/>
         </div>
-            <button type="button" className="btn btn-primary me-2">Update</button>
-            <button type="button" className="btn btn-danger">Delete</button>
+            <button type="button" className="btn btn-primary me-2">
+                Update
+            </button>
         </div>
     );
 };
