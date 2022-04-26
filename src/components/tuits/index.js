@@ -61,6 +61,14 @@ const Tuits = ({tuits = [], refreshTuits}) => {
         tuitService.deleteTuit(tid)
             .then(refreshTuits);
 
+    const updateTuit = (newTuit) => {
+      console.log('update tuit', newTuit)
+      tuitService.updateTuit(newTuit._id,newTuit)
+
+      //setTodos(newTodos);
+
+    }
+
     return (
     <div>
       <ul className="ttr-tuits list-group">
@@ -71,6 +79,7 @@ const Tuits = ({tuits = [], refreshTuits}) => {
                     deleteTuit={deleteTuit}
                     likeTuit={likeTuit}
                     dislikeTuit={dislikeTuit}
+                    updateTuit={updateTuit}
                     tuit={tuit}/>
             );
           })

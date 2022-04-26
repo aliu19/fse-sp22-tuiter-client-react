@@ -45,11 +45,34 @@ const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit, updateTuit}) => {
                 }
             </div>
             <div className="w-100">
-                { tuit.ownedByMe === true &&
+                {/* { tuit.ownedByMe === true &&
                     <i onClick={() => deleteTuit(tuit._id)}
                        className="fas fa-remove tuit-button fa-2x fa-pull-right"/>
                 }
-                {console.log(tuit)}
+                {console.log(tuit)} */}
+                {
+                    tuit.ownedByMe && !editing &&
+                    <i data-testid='edit-button'
+                       className='float-end fa fa-pen edit-button'
+                       onClick={() => {
+                           setEditing(true)
+                       }}/>
+                }
+                {
+                    editing &&
+                    <div className='up-del-buttons'>
+                        <i onClick={() => {
+                            setEditing(false)
+                            updateTuit(tuitCache) 
+                        }}
+                           className="float-end fa fa-check save-button"/>
+                        <i
+                            onClick={() => {
+                                deleteTuit(tuit._id)
+                            }}
+                            className="float-end fa fa-trash me-1 trash-button"/>
+                    </div>
+                }
                 <Link to={`/tuit/${tuit._id}`}>
                     <i className="float-end tuit-button fas fa-circle-ellipsis me-1"/>
                 </Link>
