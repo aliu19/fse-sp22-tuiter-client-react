@@ -15,6 +15,8 @@ import More from "../more";
 import {Login} from "../profile/login";
 import Signup from "../profile/signup";
 import TuitScreen from "../tuits/tuit-screen";
+import OtherUserProfile from "../profile/other-user-profile"
+
 
 function Tuiter () {
   return(
@@ -38,6 +40,7 @@ function Tuiter () {
               <Route path="/bookmarks" element={<Bookmarks/>}/>
               <Route path="/lists" element={<Lists/>}/>
               <Route path="/profile/*" element={<Profile/>}/>
+              <Route path="/other-profile/:ouid/*" element={<OtherUserProfile/>}/>
               <Route path="/profile/edit" element={<EditProfile/>}/>
               <Route path="/more" element={<More/>}/>
               <Route path="/tuit/:tid" element={<TuitScreen/>}/>
