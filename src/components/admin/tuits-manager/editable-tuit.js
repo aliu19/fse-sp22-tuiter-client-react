@@ -8,7 +8,8 @@ import React, {useState} from "react";
  * Implements editable tuit component that display each tuit
  * and enables admins to edit/delete the tuit.
  */
-const EditableTuit = ({tuit}) => {
+
+const EditableTuit = ({tuit, deleteTuit}) => {
     const [tuitCache, setTuitCache] = useState(tuit);
     const [editing, setEditing] = useState(false);
     const daysOld = (tuit) => {
@@ -47,27 +48,8 @@ const EditableTuit = ({tuit}) => {
                 }
             </div>
             <div className="w-100">
-                {
-                    !editing &&
-                    <i data-testid='edit-button'
-                       className='float-end fa fa-pen edit-button'
-                       onClick={() => {
-                           setEditing(true)
-                       }}/>
-                }
-                {
-                    editing &&
-                    <div className='up-del-buttons'>
-                        <i onClick={() => {
-                            setEditing(false)
-                        }}
-                           className="float-end fa fa-check save-button"/>
-                        <i
-                            onClick={() => {
-                            }}
-                            className="float-end fa fa-trash me-1 trash-button"/>
-                    </div>
-                }
+                <i onClick={()=> deleteTuit(tuit._id)}
+                className='float-end fa fa-trash mr-1'/>
                 <h2
                     className="fs-5">
                     {tuit.postedBy && tuit.postedBy.username}
@@ -75,7 +57,7 @@ const EditableTuit = ({tuit}) => {
                     tuit)}</span></h2>
                 {
                     !editing &&
-                    tuit.tuit
+                    tuitCache.tuit
                 }
                 {
                     editing &&
