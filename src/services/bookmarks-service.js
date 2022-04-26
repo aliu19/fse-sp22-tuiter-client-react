@@ -1,3 +1,6 @@
+/**
+ * @file Implements the service layer that helps fetch bookmarks remote API
+ */
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
