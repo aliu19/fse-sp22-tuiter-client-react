@@ -75,7 +75,7 @@ const AdminEditProfile = () => {
                 </Link>
                 <span to="/admin/*"
                       onClick={() => handleUserUpdate()}
-                      className="save-button btn btn-success rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
+                      className="save-button-2 btn btn-success rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
                     Save
                 </span>
                 {/* <Link
