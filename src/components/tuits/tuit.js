@@ -58,9 +58,9 @@ const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
                     to={`/other-profile/${tuit.postedBy._id}/tuits`}>
                     {tuit.postedBy && tuit.postedBy.username}</Link>}
                 {tuit.ownedByMe === true &&
-                    <h2
+                    <span
                     className="fs-5">
-                    {tuit.postedBy && tuit.postedBy.username}</h2>
+                    {tuit.postedBy && tuit.postedBy.username}</span>
                 }
                 @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> 
                 </div>                 {tuit.tuit}
