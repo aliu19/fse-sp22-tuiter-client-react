@@ -2,12 +2,13 @@
  * @file Implement tuit component that display each
  * individual tuit
  */
- import React, {useState} from "react";
+import React, {useState} from "react";
+import TuitStats from "./tuit-stats";
 
  /**
   * Implements tuit component that display each tuit.
   */
- const OtherTuit = ({tuit}) => {
+ const OtherTuit = ({tuit, likeTuit, dislikeTuit}) => {
      const daysOld = (tuit) => {
          const now = new Date();
          const nowMillis = now.getTime();
@@ -50,7 +51,9 @@
                      @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(
                      tuit)}</span></h2>
                  {tuit.tuit}
-                
+                 <TuitStats tuit={tuit}
+                           dislikeTuit={dislikeTuit}
+                           likeTuit={likeTuit}/>
              </div>
          </li>
      )

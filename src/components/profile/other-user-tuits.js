@@ -24,7 +24,10 @@ const OtherUserTuits = () => {
     }, []);
 
     return (
-        <OtherTuits userTuits={tuits}/>
+        <OtherTuits 
+        userTuits={tuits}
+        refreshTuits={findTuitByUser}
+        />
     )
 }
 
