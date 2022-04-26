@@ -1,8 +1,20 @@
+/**
+ * @file Implements edit-profile component that displays user's information, and
+ * enable admin to manage user's account.
+ * Admin can click update to update their profile information
+ * Admin can click delete to delete their account
+ * Admin can click go-back to their profile page.
+ */
 import React, {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import * as authService from "../../../services/auth-service";
 import * as usersService from "../../../services/users-service";
 
+
+/**
+ * Implements AdminEditProfile component that will fetch and display user's profile information and
+ * enables admin to edit user's profile information and delete user's account
+ */
 const AdminEditProfile = () => {
     const {uid} = useParams()
     const [admin, setAdmin] = useState({});
@@ -57,13 +69,13 @@ const AdminEditProfile = () => {
     return (
         <div className="ttr-admin-edit-profile ms-5 me-5">
             <div className="border border-bottom-0">
-                <Link to="/admin/*"
+                <Link to="/admin/user"
                       className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
                     <i className="fas fa-angle-left"/>
                 </Link>
                 <span to="/admin/*"
                       onClick={() => handleUserUpdate()}
-                      className="save-button btn btn-dark rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
+                      className="save-button btn btn-success rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
                     Save
                 </span>
                 {/* <Link
