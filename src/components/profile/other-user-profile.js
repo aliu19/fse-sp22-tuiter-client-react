@@ -15,6 +15,7 @@
  const OtherUserProfile = () => {
     const [otherUser, setOtherUser] = useState([]);
     const [otherTuits, setOtherTuits] = useState([]);
+    const location = useLocation();
     const {ouid} = useParams();
     const findUserById = () =>
     usersService.findUserById(ouid)
@@ -24,7 +25,7 @@
             });
 
    useEffect(() => {
-    console.log('location', window.location.pathname.indexOf('625712d9be600276088d9d30'))
+    console.log('location', window.location.pathname.indexOf('tuits'))
        findUserById();
     //    findTuitByUser();
     }, []);
@@ -87,27 +88,27 @@
            <b className="ms-4">51.1M</b> Followers
            <ul className="mt-4 nav nav-pills nav-fill">
             <li className="nav-item">
-                <Link className={`nav-link ${window.location.pathname.indexOf('tuits') >= 0 ? 'active':''}`}
+                <Link className={`nav-link ${location.pathname.indexOf('tuits') >= 0 ? 'active':''}`}
                       to={`/other-profile/${otherUser._id}/tuits`}>Tuits</Link>
             </li>
             <li className="nav-item">
               <Link to="/other-profile/tuits-and-replies"
-                    className={`nav-link ${window.location.pathname.indexOf('tuits-and-replies') >= 0 ? 'active':''}`}>
+                    className={`nav-link ${location.pathname.indexOf('tuits-and-replies') >= 0 ? 'active':''}`}>
                 Tuits & replies</Link>
             </li>
             <li className="nav-item">
               <Link to="/other-profile/media"
-                    className={`nav-link ${window.location.pathname.indexOf('media') >= 0 ? 'active':''}`}>
+                    className={`nav-link ${location.pathname.indexOf('media') >= 0 ? 'active':''}`}>
                 Media</Link>
             </li>
             <li className="nav-item">
               <Link to={`/other-profile/${otherUser._id}/likes`}
-                    className={`nav-link ${window.location.pathname.indexOf('likes') >= 0 ? 'active':''}`}>
+                    className={`nav-link ${location.pathname.indexOf('likes') >= 0 ? 'active':''}`}>
                 Likes</Link>
             </li>
             <li className="nav-item">
               <Link to={`/other-profile/${otherUser._id}/dislikes`}
-                    className={`nav-link ${window.location.pathname.indexOf('dislikes') >= 0 ? 'active':''}`}>
+                    className={`nav-link ${location.pathname.indexOf('dislikes') >= 0 ? 'active':''}`}>
                 Dislikes
               </Link>
             </li>
