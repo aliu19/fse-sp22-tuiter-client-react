@@ -47,23 +47,14 @@ const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
                     <i onClick={() => deleteTuit(tuit._id)}
                        className="fas fa-remove tuit-button fa-2x fa-pull-right"/>
                 }
-                {console.log(tuit)}
                 <Link to={`/tuit/${tuit._id}`}>
                     <i className="float-end tuit-button fas fa-circle-ellipsis me-1"/>
                 </Link>
-                <div>
-                {!tuit.ownedByMe &&
-                    <Link
-                    className="fs-5"
-                    to={`/other-profile/${tuit.postedBy._id}/tuits`}>
-                    {tuit.postedBy && tuit.postedBy.username}</Link>}
-                {tuit.ownedByMe === true &&
-                    <h2
+                <h2
                     className="fs-5">
-                    {tuit.postedBy && tuit.postedBy.username}</h2>
-                }
-                @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> 
-                </div>                 {tuit.tuit}
+                    {tuit.postedBy && tuit.postedBy.username}
+                    @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> </h2>
+                {tuit.tuit}
                 {
                     tuit.youtube &&
                     <TuitVideo tuit={tuit}/>
