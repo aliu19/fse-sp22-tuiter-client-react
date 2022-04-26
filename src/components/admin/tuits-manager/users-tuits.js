@@ -1,14 +1,41 @@
-import React from "react";
+import {useEffect, useState} from "react";
+import * as service from "../../../services/tuits-service"
 import {useParams} from "react-router-dom";
+import EditableTuits from "./editable-tuits";
 
 const UsersTuits = () => {
     const {uid} = useParams();
-    return(
-        <div>
-            <h2>User's tuits</h2>
-            <h2>{`user id is${uid}`}</h2>
-        </div>
-    )
-}
+    const [tuits, setTuits] = useState([]);
+    
+    const findTuitByUser = () =>
+        service.findTuitByUser(uid)
+                .then(tuits => {
+                    console.log('tuits', tuits)
+                    console.log('uid', uid)
+                    setTuits(tuits)
+                })
+    const deleteTuit = (tid) => {
+        service.deleteTuit(tid)
+            .then(res => {
+                let updatedTuits = tuits.filter(t => t._id !== tid);
+                setTuits(updatedTuits);
+                alert("Tuti successfully deleted!")
+            })
+            .catch(e => alert("Try again later!"))
+    }
+    // useEffect(findTuitById, []);
+    useEffect(() => {
+        findTuitByUser()
+    }, []);
 
-export default UsersTuits
+
+    return(
+        <div className="ttr-users-tuits ms-5 me-5">
+            <h2>User's Tuits</h2>
+            <EditableTuits 
+            deleteTuit={deleteTuit}
+            allTuits={tuits}/>
+        </div>
+    );
+};
+export default UsersTuits;
