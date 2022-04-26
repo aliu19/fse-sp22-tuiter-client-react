@@ -75,9 +75,10 @@ const TuitScreen = () => {
             <Tuit 
             likeTuit={likeTuit}
             dislikeTuit={dislikeTuit}
+            updateTuit={updateTuit}
             tuit={tuit}/>
         </div>
-            {tuit.ownedByMe && !editing &&
+            {/* {tuit.ownedByMe && !editing &&
                 <button type="button" 
                         className="btn btn-primary me-2"
                         onClick={() => {
@@ -94,7 +95,7 @@ const TuitScreen = () => {
                             setEditing(false)
                             updateTuit(tuitCache) 
                         }}></button>
-            }
+            } */}
         </div>
     );
 };

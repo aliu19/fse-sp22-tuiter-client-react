@@ -1,13 +1,15 @@
 /**
  * @file Implement Tuit component for displaying each tuit
  */
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import TuitStats from "./tuit-stats";
 import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 import {Link} from "react-router-dom";
 
-const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
+const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit, updateTuit}) => {
+    const [tuitCache, setTuitCache] = useState(tuit);
+    const [editing, setEditing] = useState(false);
     const daysOld = (tuit) => {
         const now = new Date();
         const nowMillis = now.getTime();
@@ -62,7 +64,18 @@ const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
                     tuit.postedBy.username
                     }
                     @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> </h2>
-                {tuit.tuit}
+                {
+                    !editing &&
+                    tuitCache.tuit
+                }
+                {
+                    editing &&
+                    <textarea value={tuitCache.tuit}
+                           onChange={(e) => {
+                               setTuitCache({...tuitCache, tuit: e.target.value})
+                           }}
+                           className="form-control mb-3"/>
+                }
                 {
                     tuit.youtube &&
                     <TuitVideo tuit={tuit}/>
