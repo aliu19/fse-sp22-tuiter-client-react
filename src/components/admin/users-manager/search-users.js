@@ -1,9 +1,16 @@
+/**
+ * @file Implements search users component that enables admins to search users by their username
+ * and displays search results. Admins can further manage each users' accounts.
+ */
 import React, {useEffect, useState} from "react";
 import UsersTable from "./users-table";
 import * as usersService from "../../../services/users-service";
 import * as authService from "../../../services/auth-service";
-import {searchByUsername} from "../../../services/users-service";
 
+/**
+ * Implements search users component that enables admins to search users by their username
+ * and displays search results using users table component.
+ */
 const SearchUsers = () => {
     const [searchName, setSearchName] = useState("");
     const [searchResults, setSearchResults] = useState([]);
