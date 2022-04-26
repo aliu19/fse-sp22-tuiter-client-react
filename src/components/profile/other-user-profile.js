@@ -1,5 +1,5 @@
 /**
- * @file Implements Profile component for display profile page for a user
+ * @file Implements other user's Profile component for display profile page for a user
  * It contains links to my-tuits, my-likes and my-dislikes
  */
  import React, {useEffect, useState} from "react";
@@ -39,15 +39,6 @@
 //    }
 
    return(
-        // <div className='container-fluid'>
-        //     <h2>User's profile</h2>
-        //     {
-        //         user &&
-        //         <div>
-        //             {user.username}
-        //         </div>
-        //     }
-        // </div>
      <div className="ttr-other-user-profile">
        <div className="border border-bottom-0">
          <h4 className="p-2 mb-0 pb-0 fw-bolder">

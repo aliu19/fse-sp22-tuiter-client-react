@@ -1,3 +1,7 @@
+/**
+ * @file Implements a list of tuits a user posted for other user's profile
+ */
+
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
