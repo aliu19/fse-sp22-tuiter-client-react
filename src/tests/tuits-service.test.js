@@ -128,7 +128,7 @@ describe('can update tuit', () => {
     afterAll(()=> {
         let promises = []
         promises.push(deleteUsersByUsername(sowell.username));
-        promises.push(deleteTuitByContent(sample.tuit));
+        promises.push(deleteTuitByContent(newSample.tuit));
         return Promise.all(promises);
     })
 
