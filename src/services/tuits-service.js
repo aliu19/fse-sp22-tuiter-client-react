@@ -5,9 +5,11 @@ import axios from "axios";
 // const BASE_URL = "https://cs5500-node-a3.herokuapp.com/api";
 // const BASE_URL = "http://localhost:4000/api";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const TUITS_API = `${BASE_URL}/api/tuits`;
 const USERS_API = `${BASE_URL}/api/users`;
 const ADMIN_API = `${BASE_URL}/api/admin`;
+
 
 export const api = axios.create({
     withCredentials: true
@@ -58,7 +60,7 @@ export const createTuitByUser = (uid, tuit) =>
  * @returns {Promise<AxiosResponse<any>>} Body formatted as JSON the tuit inserted in the database
  */
 export const updateTuit = (tid, tuit) =>
-    api.post(`${TUITS_API}/${tid}`, tuit)
+    api.put(`${TUITS_API}/${tid}`, tuit)
         .then(response => response.data);
 
 /**
