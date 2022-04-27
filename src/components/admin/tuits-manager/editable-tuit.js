@@ -3,6 +3,8 @@
  * individual tuit and enables admins to manage the tuit.
  */
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
+
 
 /**
  * Implements editable tuit component that display each tuit
@@ -50,12 +52,18 @@ const EditableTuit = ({tuit, deleteTuit}) => {
             <div className="w-100">
                 <i onClick={()=> deleteTuit(tuit._id)}
                 className='float-end fa fa-trash mr-1'/>
-                <h2
+               <h2
                     className="fs-5">
-                    {tuit.postedBy && tuit.postedBy.username}
-                    @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(
-                    tuit)}</span></h2>
-                {
+                    {!tuit.ownedByMe && tuit.postedBy && 
+                    <Link to={`/other-profile/${tuit.postedBy._id}/tuits`}>
+                        {tuit.postedBy.username}
+                    </Link>
+                    }
+                    {tuit.ownedByMe && tuit.postedBy && 
+                    tuit.postedBy.username
+                    }
+                    @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> </h2>
+                  {
                     !editing &&
                     tuitCache.tuit
                 }
