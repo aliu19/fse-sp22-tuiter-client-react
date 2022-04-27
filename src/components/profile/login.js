@@ -9,7 +9,7 @@ export const Login = () => {
     const login = () =>
         service.login(loginUser)
             .then((user) => navigate('/profile/mytuits'))
-            .catch(e => alert(e));
+            .catch(e => alert("Username or password is wrong! Try again."));
 
     return (
         <div>

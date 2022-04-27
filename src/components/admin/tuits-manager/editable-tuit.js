@@ -51,6 +51,7 @@ const EditableTuit = ({tuit, deleteTuit}) => {
             </div>
             <div className="w-100">
                 <i onClick={()=> deleteTuit(tuit._id)}
+                data-testid='delete-button'
                 className='float-end fa fa-trash mr-1'/>
                <h2
                     className="fs-5">

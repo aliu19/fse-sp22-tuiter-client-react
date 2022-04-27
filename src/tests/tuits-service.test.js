@@ -3,8 +3,9 @@ import {
     deleteTuitByContent,
     findTuitById,
     findAllTuits,
-    searchByTuit
-} from "../services/tuits-service"
+    searchByTuit,
+    updateTuit
+} from "../services/tuits-service";
 
 import {
     createUser,
@@ -93,6 +94,49 @@ describe('can delete tuit with REST API', () => {
         expect(status.deletedCount).toBeGreaterThanOrEqual(1);
     })
 });
+
+describe('can update tuit', () => {
+     // sample tuit to delete
+    const sample = {
+        tuit: "Sample tuit for test"
+    }
+    const newSample = {
+        tuit: "New Sample tuit for test"
+    }
+
+    // sample user to insert
+    // This is author of the tuit to be deleted
+    const sowell = {
+        username: 'thommas_sowell',
+        password: 'compromise',
+        email: 'compromise@solutions.com'
+    };
+
+    let tuit;
+
+    // set up the tests before verification
+    beforeAll(async ()=> {
+        // insert the sample tuit we then try to remove
+        const newUser = await createUser(sowell);
+        tuit = await createTuitByUser(newUser._id, sample);
+        //return tuit;
+    })
+
+    
+
+    // clean up after test runs
+    afterAll(()=> {
+        let promises = []
+        promises.push(deleteUsersByUsername(sowell.username));
+        promises.push(deleteTuitByContent(newSample.tuit));
+        return Promise.all(promises);
+    })
+
+    test('can update tuit from REST API by content', async ()=> {
+        const status = await updateTuit(tuit._id, newSample);
+        expect(status.modifiedCount).toBeGreaterThanOrEqual(1);
+    })
+})
 
 describe('can retrieve a tuit by their primary key with REST API', () => {
     // sample tuit we want to retrieve
@@ -250,3 +294,5 @@ describe('can search tuit by tuit', () => {
         expect(searchedTuits.length).toEqual(3);
     });
 })
+
+
