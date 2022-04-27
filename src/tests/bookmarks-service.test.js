@@ -52,7 +52,7 @@ describe("create a new bookmark", () => {
     let bookmarkStatus = await userTogglesTuitBookmarks(bookmarker._id, insertedTuit._id)
     const afterBookmarks = await findAllBookmarks()
 
-    expect(bookmarkStatus).toEqual(200)
+    expect(bookmarkStatus).toEqual("OK")
     expect(afterBookmarks.length).toEqual(beforeBookmarks.length + 1)
   })
 })
@@ -89,8 +89,8 @@ describe("delete a bookmark", () => {
     let unbookmarkStatus = await userTogglesTuitBookmarks(bookmarker._id, insertedTuit._id)
     const afterBookmarks = await findAllBookmarks()
 
-    expect(bookmarkStatus).toEqual(200)
-    expect(unbookmarkStatus).toEqual(200)
+    expect(bookmarkStatus).toEqual("OK")
+    expect(unbookmarkStatus).toEqual("OK")
     expect(afterBookmarks.length).toEqual(beforeBookmarks.length)
   })
 })
@@ -124,15 +124,17 @@ describe("find all tuits bookmarked by a user", () => {
     // create users and tuits
     const author = await createUser(adam);
     const bookmarker = await createUser(sowell)
-    let insertedTuits = tuitContents.map(content => {
-      createTuitByUser(author._id, {tuit: content, postedOn: "2022-03-09T00:00:00.000Z"});
+    let promises = []
+    tuitContents.map(content => {
+      promises.push(createTuitByUser(author._id, {tuit: content, postedOn: "2022-03-09T00:00:00.000Z"}))
     })
+    let insertedTuits = await Promise.all(promises);
 
     // user bookmarks tuits
     await userTogglesTuitBookmarks(bookmarker._id, insertedTuits[0]._id)
     await userTogglesTuitBookmarks(bookmarker._id, insertedTuits[1]._id)
 
-    const bookmarkedTuits = await findAllTuitsBookmarkedByUser(bookmarker_id)
+    const bookmarkedTuits = await findAllTuitsBookmarkedByUser(bookmarker._id)
 
     expect(bookmarkedTuits.length).toEqual(2)
     expect(bookmarkedTuits[0].tuit).toEqual(tuitContents[0])
