@@ -42,6 +42,7 @@ const Signup = () => {
                             name='role'
                             type="radio"
                             value='GENERAL'
+                            checked="checked"
                             onChange={(e) =>
                                 setNewUser({...newUser, role: e.target.value})}/>
                         <label className="form-check-label">
