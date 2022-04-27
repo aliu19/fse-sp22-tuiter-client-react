@@ -28,16 +28,8 @@
     console.log('location', location.pathname.indexOf('tuits-and-replies'))
     console.log('location-tuits', location.pathname.indexOf('tuits'))
        findUserById();
-    //    findTuitByUser();
     }, []);
 
-   /**
-    * Helper function for destroy the sessions
-    */
-//    const logout = () => {
-//      service.logout()
-//          .then(() => navigate('/login'))
-//    }
 
    return(
      <div className="ttr-other-user-profile">

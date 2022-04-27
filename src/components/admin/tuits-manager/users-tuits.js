@@ -10,8 +10,6 @@ const UsersTuits = () => {
     const findTuitByUser = () =>
         service.findTuitByUser(uid)
                 .then(tuits => {
-                    console.log('tuits', tuits)
-                    console.log('uid', uid)
                     setTuits(tuits)
                 })
     const deleteTuit = (tid) => {

@@ -30,7 +30,6 @@ const AdminEditProfile = () => {
             }
             setAdmin(logAsAdmin)
             const findUserProfile = await usersService.findUserById(uid);
-            console.log(findUserProfile)
             setProfile(findUserProfile);
         } catch (e) {
             alert("Must logged in as an admin user.")
