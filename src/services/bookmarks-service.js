@@ -26,3 +26,11 @@ export const userTogglesTuitBookmarks = (uid, tid) =>
 export const findAllTuitsBookmarkedByUser = (uid) =>
     api.get(`${USERS_API}/${uid}/bookmarks`)
         .then(response => response.data)
+
+/**
+ * GET method for retrieving all bookmarks
+ * @returns {Promise<AxiosResponse<any>>} JSON array of all bookmarks
+ */
+export const findAllBookmarks = () =>
+    api.get(`${BASE_URL}/api/bookmarks`)
+      .then(response => response.data)
