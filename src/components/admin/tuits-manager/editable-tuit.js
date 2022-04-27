@@ -56,7 +56,7 @@ const EditableTuit = ({tuit, deleteTuit}) => {
                <h2
                     className="fs-5">
                     {!tuit.ownedByMe && tuit.postedBy && 
-                    <Link to={`/other-profile/${tuit.postedBy._id}/tuits`}>
+                    <Link to={`/other-profile/${tuit.postedBy._id}/othertuits`}>
                         {tuit.postedBy.username}
                     </Link>
                     }
