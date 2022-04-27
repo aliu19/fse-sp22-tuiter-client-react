@@ -77,6 +77,7 @@ const TuitScreen = () => {
             <div className="mb-3">
             {console.log('tuit-screen',tuit)}
             <Tuit 
+            key={tuit._id}
             likeTuit={likeTuit}
             dislikeTuit={dislikeTuit}
             updateTuit={updateTuit}
