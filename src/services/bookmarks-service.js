@@ -7,8 +7,9 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 const USERS_API = `${BASE_URL}/api/users`;
 
 export const api = axios.create({
-                                    withCredentials: true
-                                })
+    withCredentials: true
+})
+
 
 /**
  * PUT method for un/bookmarking a tuit
