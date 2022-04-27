@@ -15,3 +15,8 @@
 .tuit-button {
     cursor: pointer;
 }
+
+.ttr-bookmark-tuit-click {
+    cursor: pointer;
+    color: orange;
+}

@@ -7,7 +7,7 @@ import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 import {Link} from "react-router-dom";
 
-const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit, updateTuit}) => {
+const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit, updateTuit, bookmarkTuit}) => {
     const [tuitCache, setTuitCache] = useState(tuit);
     const [editing, setEditing] = useState(false);
     const daysOld = (tuit) => {
@@ -109,6 +109,7 @@ const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit, updateTuit}) => {
                 }
                 <TuitStats tuit={tuit}
                            dislikeTuit={dislikeTuit}
+                           bookmarkTuit={bookmarkTuit}
                            likeTuit={likeTuit}/>
             </div>
         </li>
