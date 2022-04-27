@@ -10,6 +10,7 @@ export const api = axios.create({
     withCredentials: true
 })
 
+
 /**
  * PUT method for un/bookmarking a tuit
  * @param uid User's primary key
