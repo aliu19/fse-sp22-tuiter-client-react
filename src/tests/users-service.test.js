@@ -73,7 +73,8 @@ describe('findUserById',  () => {
   const adam = {
     username: 'adam_smith',
     password: 'not0sum',
-    email: 'wealth@nations.com'
+    email: 'wealth@nations.com',
+    role: 'GENERAL'
   };
 
   // setup before running test

@@ -77,6 +77,10 @@ const Tuits = ({tuits = [], refreshTuits}) => {
         }
     }
     
+    /**
+     * Callback function to fetch API to update a tuit
+     * @param newTuit new Tuit object
+     */
     const updateTuit = (newTuit) => {
       tuitService.updateTuit(newTuit._id,newTuit)
     }

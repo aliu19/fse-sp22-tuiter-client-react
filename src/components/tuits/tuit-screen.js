@@ -29,6 +29,10 @@ const TuitScreen = () => {
                 setTuit(tuit)
             });
 
+    /**
+     * Callback function to fetch API to update a tuit
+     * @param newTuit new Tuit object
+     */
     const updateTuit = (newTuit) => {
         console.log('update tuit', newTuit)
         service.updateTuit(newTuit._id,newTuit)
