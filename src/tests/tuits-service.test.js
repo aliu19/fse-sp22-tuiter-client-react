@@ -5,7 +5,7 @@ import {
     findAllTuits,
     searchByTuit,
     updateTuit
-} from "../services/tuits-service"
+} from "../services/tuits-service";
 
 import {
     createUser,
