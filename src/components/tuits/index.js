@@ -76,6 +76,10 @@ const Tuits = ({tuits = [], refreshTuits}) => {
             alert("Please log in!")
         }
     }
+    
+    const updateTuit = (newTuit) => {
+      tuitService.updateTuit(newTuit._id,newTuit)
+    }
 
 
     return (
@@ -89,6 +93,7 @@ const Tuits = ({tuits = [], refreshTuits}) => {
                                             likeTuit={likeTuit}
                                             dislikeTuit={dislikeTuit}
                                             bookmarkTuit={bookmarkTuit}
+                                            updateTuit={updateTuit}
                                             tuit={tuit}/>
                                   );
                               })

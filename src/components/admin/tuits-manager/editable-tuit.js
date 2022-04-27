@@ -3,12 +3,15 @@
  * individual tuit and enables admins to manage the tuit.
  */
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
+
 
 /**
  * Implements editable tuit component that display each tuit
  * and enables admins to edit/delete the tuit.
  */
-const EditableTuit = ({tuit}) => {
+
+const EditableTuit = ({tuit, deleteTuit}) => {
     const [tuitCache, setTuitCache] = useState(tuit);
     const [editing, setEditing] = useState(false);
     const daysOld = (tuit) => {
@@ -47,35 +50,22 @@ const EditableTuit = ({tuit}) => {
                 }
             </div>
             <div className="w-100">
-                {
-                    !editing &&
-                    <i data-testid='edit-button'
-                       className='float-end fa fa-pen edit-button'
-                       onClick={() => {
-                           setEditing(true)
-                       }}/>
-                }
-                {
-                    editing &&
-                    <div className='up-del-buttons'>
-                        <i onClick={() => {
-                            setEditing(false)
-                        }}
-                           className="float-end fa fa-check save-button"/>
-                        <i
-                            onClick={() => {
-                            }}
-                            className="float-end fa fa-trash me-1 trash-button"/>
-                    </div>
-                }
-                <h2
+                <i onClick={()=> deleteTuit(tuit._id)}
+                className='float-end fa fa-trash mr-1'/>
+               <h2
                     className="fs-5">
-                    {tuit.postedBy && tuit.postedBy.username}
-                    @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(
-                    tuit)}</span></h2>
-                {
+                    {!tuit.ownedByMe && tuit.postedBy && 
+                    <Link to={`/other-profile/${tuit.postedBy._id}/tuits`}>
+                        {tuit.postedBy.username}
+                    </Link>
+                    }
+                    {tuit.ownedByMe && tuit.postedBy && 
+                    tuit.postedBy.username
+                    }
+                    @{tuit.postedBy && tuit.postedBy.username} -<span className="ms-1">{daysOld(tuit)}</span> </h2>
+                  {
                     !editing &&
-                    tuit.tuit
+                    tuitCache.tuit
                 }
                 {
                     editing &&
